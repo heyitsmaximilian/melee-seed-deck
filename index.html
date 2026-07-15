@@ -5,18 +5,7 @@
 <title>Melee — Seed Deck</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&amp;display=swap" rel="stylesheet">
-<script>
-  /* Draft theme switch: ?theme=editorial → light editorial; default → dark Graphite. */
-  (function () {
-    try {
-      var t = new URLSearchParams(location.search).get('theme');
-      if (t === 'editorial' || t === 'light') {
-        document.documentElement.setAttribute('data-theme', 'editorial');
-      }
-    } catch (e) {}
-  })();
-</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
 <script src="deck-stage.js"></script>
 <style>
   /* ============================================================
@@ -53,42 +42,6 @@
     --glow-strength: 0.12;
   }
 
-  /* ============================================================
-     THEME B — EDITORIAL (light, warm). Matches PMM landing.
-     Activate with ?theme=editorial
-     ============================================================ */
-  html[data-theme="editorial"] {
-    --bg: #EFEEE8;
-    --bg-card: rgba(255,255,255,0.72);
-    --bg-card-hover: rgba(255,255,255,0.85);
-    --primary: #7450ec;
-    --primary-rgb: 116,80,236;
-    --green: #059669;
-    --cyan: #6a4fe0;
-    --amber: #c79a5e;
-    --red: #b4463c;
-    --text: #1C1B18;
-    --text-secondary: #54534c;
-    --text-muted: #6b6a62;
-    --text-faint: rgba(28,27,24,0.18);
-    --text-tertiary: #7c8a81;
-    --border: rgba(28,27,24,0.10);
-    --border-hover: rgba(28,27,24,0.22);
-
-    --font-display: 'Fraunces', Georgia, serif;
-    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-mono: 'Inter', sans-serif;
-
-    --r-control: 10px;
-    --r-card: 20px;
-    --r-sheet: 24px;
-
-    --elev-1: 0 1px 1.5px rgba(28,27,24,0.05), 0 4px 10px -2px rgba(28,27,24,0.05), inset 0 1px 0 rgba(255,255,255,0.85);
-    --elev-2: 0 1px 1.5px rgba(28,27,24,0.05), 0 28px 56px -34px rgba(28,27,24,0.4), inset 0 1px 0 rgba(255,255,255,0.85);
-    --glow-strength: 0.10;
-  }
-  html[data-theme="editorial"] .title,
-  html[data-theme="editorial"] .s1-wordmark { font-weight: 600; letter-spacing: -0.02em; }
   html, body {
     margin: 0;
     padding: 0;
@@ -199,12 +152,12 @@
   .s1-wordmark::before {
     content: "";
     display: inline-block;
-    width: 10px; height: 10px;
+    width: 24px; height: 24px;
     background: var(--primary);
-    border-radius: 50%;
-    margin-right: 14px;
-    vertical-align: middle;
-    box-shadow: 0 0 24px rgba(var(--primary-rgb),0.9);
+    -webkit-mask: url(assets/melee-mark.svg) center / contain no-repeat;
+    mask: url(assets/melee-mark.svg) center / contain no-repeat;
+    margin-right: 13px;
+    vertical-align: -4px;
   }
   .s1-meta {
     position: absolute;
@@ -1814,12 +1767,12 @@
   .s10-wordmark::before {
     content: "";
     display: inline-block;
-    width: 10px; height: 10px;
+    width: 24px; height: 24px;
     background: var(--primary);
-    border-radius: 50%;
-    margin-right: 14px;
-    vertical-align: middle;
-    box-shadow: 0 0 24px rgba(var(--primary-rgb),0.9);
+    -webkit-mask: url(assets/melee-mark.svg) center / contain no-repeat;
+    mask: url(assets/melee-mark.svg) center / contain no-repeat;
+    margin-right: 13px;
+    vertical-align: -4px;
   }
   .s10-tag {
     position: absolute;
@@ -2431,4 +2384,6 @@ without MMs or subsidies.</div>
 </script>
 
 </body></html>
-<!-- deploy 1784095644 -->
+
+
+<!-- deploy 1784095909 -->
