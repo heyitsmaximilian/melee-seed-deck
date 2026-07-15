@@ -447,6 +447,68 @@
     flex-direction: column;
     margin-top: 16px;
   }
+  .opp-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 56px;
+    flex: 1;
+    align-content: center;
+    padding-top: 40px;
+  }
+  .opp-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-left: 28px;
+    border-left: 1px solid var(--border);
+  }
+  .opp-stat.is-melee { border-left-color: var(--primary); }
+  .opp-lbl {
+    font-family: var(--font-mono);
+    font-size: 16px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+  .opp-stat.is-melee .opp-lbl { color: var(--primary); }
+  .opp-n {
+    font-family: var(--font-numeral);
+    font-size: 80px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 0.9;
+    color: var(--text);
+  }
+  .opp-stat.is-melee .opp-n { color: var(--primary); }
+  .opp-n span {
+    font-family: var(--font-body);
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--text-muted);
+    margin-left: 4px;
+  }
+  .opp-d {
+    font-size: 22px;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    font-weight: 400;
+    letter-spacing: -0.005em;
+    text-wrap: pretty;
+  }
+  .opp-foot {
+    margin-top: 44px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+    font-size: 26px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--text-secondary);
+    line-height: 1.35;
+  }
+  .opp-foot b { color: var(--primary); font-weight: 700; }
+
   .s2-analogy {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -525,7 +587,6 @@
     gap: 48px;
     align-items: end;
   }
-  .s2-verdict .v-side { }
   .s2-verdict .v-side.after { text-align: right; }
   .s2-verdict .v-lbl {
     font-family: var(--font-mono);
@@ -1394,7 +1455,7 @@
       <p class="sub"></p>
       <div class="s1-footer">
         <span>melee.markets</span>
-        <span>01 / 12</span>
+        <span>01 / 13</span>
       </div>
     </div>
   </section>
@@ -1529,10 +1590,40 @@ without MMs or subsidies.</div>
     </div>
   </section>
 
-  <!-- ======================= Slide 6 · Creator Flywheel ======================= -->
+  <!-- ======================= Slide 6 · The Market (size) ======================= -->
+  <section data-label="The Market">
+    <div class="frame">
+      <div class="corner-mark">06 — The Market</div>
+      <h2 class="title">Bigger than <span style="color:var(--primary)">betting.</span></h2>
+      <p class="sub">Prediction markets are eating global gambling with a fraction of the vig — and the real market is every truth beyond it.</p>
+
+      <div class="s2-body">
+        <div class="opp-row">
+          <div class="opp-stat">
+            <div class="opp-lbl">The prize</div>
+            <div class="opp-n">$655B<span>/yr</span></div>
+            <div class="opp-d">Global gambling today. Add speculation, culture, and opinion — every truth on earth becomes a market.</div>
+          </div>
+          <div class="opp-stat">
+            <div class="opp-lbl">Already moving</div>
+            <div class="opp-n">$45B<span>/mo</span></div>
+            <div class="opp-d">Category volume, up 9× in 9 months. Kalshi alone went from $25M to $2B in revenue.</div>
+          </div>
+          <div class="opp-stat is-melee">
+            <div class="opp-lbl">Melee's take</div>
+            <div class="opp-n">2%</div>
+            <div class="opp-d">Protocol fee on every trade — half shared with the creators who bring the markets.</div>
+          </div>
+        </div>
+        <div class="opp-foot">Curated incumbents are capped at what one team can list. <b>Permissionless has no ceiling.</b></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= Slide 7 · Creator Flywheel ======================= -->
   <section data-label="Creator Flywheel">
     <div class="frame">
-      <div class="corner-mark">06 — Creator Flywheel</div>
+      <div class="corner-mark">07 — Creator Flywheel</div>
       <h2 class="title">Creators do what <span style="color:var(--primary)">curators can't.</span></h2>
       <p class="sub">Polymarket and Kalshi hand-curate every market. Melee creates a platform for global scale.</p>
 
@@ -1592,7 +1683,7 @@ without MMs or subsidies.</div>
   <!-- ======================= Slide 7 · Competitive ======================= -->
   <section data-label="Competitive">
     <div class="frame">
-      <div class="corner-mark">07 — Competitive</div>
+      <div class="corner-mark">08 — Competitive</div>
       <h2 class="title">The permissionless <span style="color:var(--primary)">advantage.</span></h2>
       <p class="sub">Polymarket and Kalshi are curated networks. Melee is the permissionless layer beneath all truth.</p>
 
@@ -1643,7 +1734,7 @@ without MMs or subsidies.</div>
   <!-- ======================= Slide 9 · G2M (Sequencing) ======================= -->
   <section data-label="Passive Capital">
     <div class="frame s3b">
-      <div class="corner-mark">08 — The Unlock</div>
+      <div class="corner-mark">09 — The Unlock</div>
       <h2 class="title">Unlocking <span style="color:var(--primary)">$100B of DeFi liquidity.</span></h2>
       <p class="sub">Creating a baseline of liquidity for all markets with the first profitable prediction market-maker.</p>
 
@@ -1686,7 +1777,7 @@ without MMs or subsidies.</div>
   <!-- ======================= Slide 8 · Passive Capital ======================= -->
   <section data-label="G2M">
     <div class="frame">
-      <div class="corner-mark">09 — G2M</div>
+      <div class="corner-mark">10 — G2M</div>
       <h2 class="title">Find PMF. <span style="color:var(--primary)">Scale to the long-tail.</span></h2>
       <p class="sub">Win market share with a proven customer base, then expand the TAM to every truth on earth.</p>
 
@@ -1744,7 +1835,7 @@ without MMs or subsidies.</div>
   <!-- ======================= Slide 10 · Distribution ======================= -->
   <section data-label="Distribution">
     <div class="frame">
-      <div class="corner-mark">10 — Distribution</div>
+      <div class="corner-mark">11 — Distribution</div>
       <h2 class="title">Distribution compounds with <span style="color:var(--primary)">every market.</span></h2>
       <p class="sub">Melee pairs high-intent trader onboarding with an autonomous engine that can spin up attention for any vertical.</p>
 
@@ -1786,7 +1877,7 @@ without MMs or subsidies.</div>
   <!-- ======================= Slide 11 · Team ======================= -->
   <section data-label="Team">
     <div class="frame">
-      <div class="corner-mark">11 — Team</div>
+      <div class="corner-mark">12 — Team</div>
       <h2 class="title">Built <span style="color:var(--primary)">for this problem.</span></h2>
 
       <div class="team-row">
@@ -1839,7 +1930,7 @@ without MMs or subsidies.</div>
     <div class="s10">
       <div class="s10-glow"></div>
       <div class="s10-wordmark"><img src="assets/melee-lockup.svg" alt="Melee"></div>
-      <div class="s10-tag">12 / 12 — Ask</div>
+      <div class="s10-tag">13 / 13 — Ask</div>
 
       <div class="s10-label">The Ask</div>
       <div class="s10-amount"><em>$10M</em> seed.</div>
@@ -1932,4 +2023,6 @@ without MMs or subsidies.</div>
 
 
 
-<!-- deploy 1784111939 -->
+
+
+<!-- deploy 1784140584 -->
