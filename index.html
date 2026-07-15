@@ -382,71 +382,67 @@
   }
   .slide-footnote a:hover { text-decoration: underline; }
 
-  /* === Slide 4 · Product (market wall) === */
-  .pmk-grid {
+  /* === Slide 4 · Product (real market hero + breadth chips) === */
+  .s4-wrap {
     flex: 1;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 22px;
-    align-content: center;
-    max-width: 1700px;
-  }
-  .pmk {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 30px 30px 26px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    justify-content: center;
+    gap: 34px;
+    max-width: 1340px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .s4-frame {
+    border: 1px solid var(--border);
+    border-radius: var(--r-sheet);
+    overflow: hidden;
+    background: var(--bg-card);
     box-shadow: var(--card-shadow);
   }
-  .pmk-tag {
-    font-family: var(--font-mono);
-    font-size: 13px;
-    letter-spacing: 0.22em;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    font-weight: 500;
+  .s4-frame img {
+    display: block;
+    width: 100%;
+    height: auto;
   }
-  .pmk-q {
-    font-size: 27px;
-    font-weight: 600;
-    letter-spacing: -0.015em;
-    line-height: 1.25;
-    color: var(--text);
-    flex: 1;
-  }
-  .pmk-odds {
+  .s4-chips {
     display: flex;
     align-items: center;
     gap: 16px;
+    flex-wrap: wrap;
   }
-  .pmk-pct {
-    font-family: var(--font-numeral);
-    font-size: 34px;
-    line-height: 1;
-    letter-spacing: -0.01em;
-    color: var(--text);
-    font-variant-numeric: tabular-nums;
-  }
-  .pmk-bar {
-    flex: 1;
-    height: 4px;
-    border-radius: 2px;
-    background: rgba(255,255,255,0.07);
-    overflow: hidden;
-  }
-  .pmk-fill {
-    height: 100%;
-    border-radius: 2px;
-    background: var(--primary);
-  }
-  .pmk-by {
+  .s4-chips-lbl {
     font-family: var(--font-mono);
-    font-size: 13px;
-    letter-spacing: 0.06em;
+    font-size: 15px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
     color: var(--text-muted);
+    font-weight: 500;
+    margin-right: 4px;
+  }
+  .s4-chip {
+    padding: 11px 22px;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--text-secondary);
+  }
+  .s4-chip.live {
+    border-color: rgba(var(--primary-rgb),0.4);
+    background: rgba(var(--primary-rgb),0.08);
+    color: var(--primary);
+    font-weight: 600;
+  }
+  .s4-chip.live::before {
+    content: "";
+    display: inline-block;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--primary);
+    margin-right: 10px;
+    vertical-align: middle;
   }
 
   /* === Slide 5 · YouTube Moment === */
@@ -1514,42 +1510,18 @@ without MMs or subsidies.</div>
       <h2 class="title">The <span style="color:var(--primary)">people's</span> prediction market.</h2>
       <p class="sub">Anyone launches a market on anything. Liquid from the first dollar.</p>
 
-      <div class="pmk-grid">
-        <div class="pmk">
-          <div class="pmk-tag">Crypto</div>
-          <div class="pmk-q">BTC above $120K by Friday?</div>
-          <div class="pmk-odds"><span class="pmk-pct">63%</span><div class="pmk-bar"><div class="pmk-fill" style="width:63%"></div></div></div>
-          <div class="pmk-by">Launched by @solmax</div>
+      <div class="s4-wrap">
+        <div class="s4-frame">
+          <img src="assets/product-crypto.png" alt="Melee BTC crypto price market — live chart and parimutuel trade panel, live on Solana">
         </div>
-        <div class="pmk">
-          <div class="pmk-tag">Sports</div>
-          <div class="pmk-q">Arsenal win the Premier League?</div>
-          <div class="pmk-odds"><span class="pmk-pct">41%</span><div class="pmk-bar"><div class="pmk-fill" style="width:41%"></div></div></div>
-          <div class="pmk-by">Launched by @gooner_index</div>
-        </div>
-        <div class="pmk">
-          <div class="pmk-tag">Politics</div>
-          <div class="pmk-q">Milei re-elected in 2027?</div>
-          <div class="pmk-odds"><span class="pmk-pct">55%</span><div class="pmk-bar"><div class="pmk-fill" style="width:55%"></div></div></div>
-          <div class="pmk-by">Launched by @lataminsider</div>
-        </div>
-        <div class="pmk">
-          <div class="pmk-tag">Economics</div>
-          <div class="pmk-q">Fed cuts rates in September?</div>
-          <div class="pmk-odds"><span class="pmk-pct">71%</span><div class="pmk-bar"><div class="pmk-fill" style="width:71%"></div></div></div>
-          <div class="pmk-by">Launched by @macrodesk</div>
-        </div>
-        <div class="pmk">
-          <div class="pmk-tag">Culture</div>
-          <div class="pmk-q">GTA VI ships before December?</div>
-          <div class="pmk-odds"><span class="pmk-pct">34%</span><div class="pmk-bar"><div class="pmk-fill" style="width:34%"></div></div></div>
-          <div class="pmk-by">Launched by @leakwatch</div>
-        </div>
-        <div class="pmk">
-          <div class="pmk-tag">Breaking news</div>
-          <div class="pmk-q">Starship reaches orbit this flight?</div>
-          <div class="pmk-odds"><span class="pmk-pct">58%</span><div class="pmk-bar"><div class="pmk-fill" style="width:58%"></div></div></div>
-          <div class="pmk-by">Launched 3 min after the story broke</div>
+        <div class="s4-chips">
+          <span class="s4-chips-lbl">One primitive · every category</span>
+          <span class="s4-chip live">Crypto</span>
+          <span class="s4-chip">Sports</span>
+          <span class="s4-chip">Politics</span>
+          <span class="s4-chip">Economics</span>
+          <span class="s4-chip">Culture</span>
+          <span class="s4-chip">Breaking news</span>
         </div>
       </div>
     </div>
@@ -1979,4 +1951,6 @@ without MMs or subsidies.</div>
 
 
 
-<!-- deploy 1784101756 -->
+
+
+<!-- deploy 1784108030 -->
