@@ -307,7 +307,7 @@
   /* === Slide 3 · Mechanism Comparison === */
   .cmp {
     display: grid;
-    grid-template-columns: 260px repeat(2, 1fr);
+    grid-template-columns: 260px repeat(3, 1fr);
     border: 1px solid var(--border);
     border-radius: 18px;
     overflow: hidden;
@@ -321,8 +321,8 @@
     border-right: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
   }
-  .cmp > div:nth-child(3n) { border-right: none; }
-  .cmp > div:nth-last-child(-n+3) { border-bottom: none; }
+  .cmp > div:nth-child(4n) { border-right: none; }
+  .cmp > div:nth-last-child(-n+4) { border-bottom: none; }
   .cmp .hdr {
     background: var(--bg);
     font-family: var(--font-mono);
@@ -1470,7 +1470,7 @@
   <section data-label="The Goal">
     <div class="frame">
       <div class="corner-mark">02 — The Problem</div>
-      <h2 class="title"><span style="color:var(--primary)">Permissionless</span> PMs were impossible.</h2>
+      <h2 class="title"><span style="color:var(--primary)">Permissionless</span> prediction markets were impossible.</h2>
       <p class="sub">No system could satisfy two core requirements.</p>
 
       <div class="s3-goal-grid">
@@ -1508,25 +1508,30 @@ without MMs or subsidies.</div>
         <div class="hdr"></div>
         <div class="hdr">Auto-<br>bootstrapping</div>
         <div class="hdr">Tradeable</div>
+        <div class="hdr">LPs<br>profitable</div>
 
         <div class="rowlbl pmm-row">PMM</div>
+        <div class="val pmm-row">✓</div>
         <div class="val pmm-row">✓</div>
         <div class="val pmm-row">✓</div>
 
         <div class="rowlbl">AMM</div>
         <div class="val bad">—</div>
         <div class="val good">✓</div>
+        <div class="val bad">✗</div>
 
         <div class="rowlbl">CLOB</div>
         <div class="val bad">—</div>
         <div class="val good">✓</div>
+        <div class="val bad">—</div>
 
         <div class="rowlbl">Parimutuel</div>
         <div class="val good">✓</div>
         <div class="val bad">—</div>
+        <div class="val bad">—</div>
       </div>
 
-      <div class="cmp-callout">PMM is the <b>first market maker designed for assets that are guaranteed to expire</b> — auto-bootstrapping and continuously tradeable.</div>
+      <div class="cmp-callout">PMM is the <b>first market maker designed for assets that are guaranteed to expire.</b></div>
       <div class="slide-footnote">Full mechanism · <a href="https://melee.markets/pmm">melee.markets/pmm</a></div>
     </div>
   </section>
@@ -1580,7 +1585,7 @@ without MMs or subsidies.</div>
     <div class="frame">
       <div class="corner-mark">05 — Opportunity</div>
       <h2 class="title">Prediction markets' <span style="color:var(--primary)">YouTube moment.</span></h2>
-      <p class="sub">Every category that goes permissionless grows <b style="color:var(--text)">1,000×</b>. Prediction markets are next.</p>
+      <p class="sub">Video grew <b style="color:var(--text)">1,000×</b> when it went permissionless. Prediction markets are next.</p>
 
       <div class="s2-body">
         <div class="s2-analogy">
@@ -1590,7 +1595,7 @@ without MMs or subsidies.</div>
             <div class="s2-col-body">Video required networks and studios. Gatekeepers picked the content. Content chased mass audiences.</div>
           </div>
           <div class="s2-col after">
-            <div class="s2-col-label">After YouTube · 2025</div>
+            <div class="s2-col-label">After YouTube · Today</div>
             <div class="s2-col-stat">Millions <span class="s2-col-stat-u">of creators</span></div>
             <div class="s2-col-body">The result wasn't more TV. It was a new category, shaped by creators and communities no network could serve.</div>
           </div>
@@ -1599,7 +1604,7 @@ without MMs or subsidies.</div>
         <div class="s2-verdict">
           <div class="v-side">
             <div class="v-lbl">Today</div>
-            <div class="before">Polymarket and Kalshi are networks.</div>
+            <div class="before">Polymarket and Kalshi are networks worth $37B.</div>
           </div>
           <div class="v-arrow"></div>
           <div class="v-side after">
@@ -1686,11 +1691,11 @@ without MMs or subsidies.</div>
         </div>
         <div class="comp-hdr">
           <div class="comp-hdr-co">Polymarket</div>
-          <div class="comp-hdr-role">Curated · global</div>
+          <div class="comp-hdr-role">Curated · crypto</div>
         </div>
         <div class="comp-hdr">
           <div class="comp-hdr-co">Kalshi</div>
-          <div class="comp-hdr-role">Curated · US</div>
+          <div class="comp-hdr-role">Curated · regulated</div>
         </div>
 
         <div class="comp-rowlbl">Markets</div>
@@ -1699,9 +1704,9 @@ without MMs or subsidies.</div>
         <div class="comp-cell">Curated markets</div>
 
         <div class="comp-rowlbl">Distribution</div>
-        <div class="comp-cell is-melee"><b>International</b></div>
-        <div class="comp-cell">International</div>
-        <div class="comp-cell">US only</div>
+        <div class="comp-cell is-melee"><b>Creator-led</b></div>
+        <div class="comp-cell">In-house</div>
+        <div class="comp-cell">In-house · brokers</div>
 
         <div class="comp-rowlbl">Liquidity</div>
         <div class="comp-cell is-melee"><b>Passive liquidity</b></div>
@@ -1709,7 +1714,7 @@ without MMs or subsidies.</div>
         <div class="comp-cell">Market makers</div>
 
         <div class="comp-rowlbl">Payouts</div>
-        <div class="comp-cell is-melee"><b>Uncapped upside</b><br><span style="color:var(--text-muted);font-size:17px;">Ratchets with volatility</span></div>
+        <div class="comp-cell is-melee"><b>Uncapped upside</b><br><span style="color:var(--text-muted);font-size:17px;">Floor locked at entry</span></div>
         <div class="comp-cell">Fixed at entry</div>
         <div class="comp-cell">Fixed at entry</div>
 
@@ -1717,7 +1722,7 @@ without MMs or subsidies.</div>
 
       <div class="comp-callout-wrap">
         <div class="comp-callout-lbl">The take</div>
-        <div class="comp-callout-body">Incumbents optimized for curated markets. Melee optimizes for <b>access, liquidity, and payouts</b> — the three things permissionless growth requires.</div>
+        <div class="comp-callout-body">Incumbents can't open market creation: <b>an order book without a market maker is a dead market.</b> They list what desks will quote. PMM markets trade from the first dollar.</div>
       </div>
     </div>
   </section>
@@ -1893,7 +1898,7 @@ without MMs or subsidies.</div>
           <div class="team-avatar"><img src="assets/team-kevin.jpeg" alt="Kevin"></div>
           <div class="team-name">Kevin</div>
           <div class="team-role">CSO</div>
-          <div class="team-caps">Mechanism &amp; smart contracts</div>
+          <div class="team-caps">Smart contracts</div>
         </div>
         <div class="team-card">
           <div class="team-avatar"><img src="assets/team-nick.jpg" alt="Nick"></div>
@@ -1995,4 +2000,6 @@ without MMs or subsidies.</div>
 
 
 
-<!-- deploy 1784099735 -->
+
+
+<!-- deploy 1784100883 -->
