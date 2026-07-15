@@ -50,7 +50,7 @@
   }
 
   /* Showcase numerals in Dela Gotic (matches /v1 markets display). Units/labels stay sans. */
-  .s2-col-stat, .s3b-row-num, .s10-amount em, .dist-proof-stat b,
+  .s2-col-stat, .s10-amount em, .dist-proof-stat b,
   .s3-goal-num {
     font-family: var(--font-numeral);
     letter-spacing: -0.01em;
@@ -118,9 +118,7 @@
      Graphite: --font-display = Inter (no-op). Editorial: = Fraunces serif. */
   .headline,
   .s3-goal-title,
-  .s3b-chart-title, .s3b-gap-n,
   .cfw2-what,
-  .dist-stage-num,
   .backed-head {
     font-family: var(--font-display);
   }
@@ -677,127 +675,77 @@
     flex: 1;
     align-items: stretch;
   }
-  .s3b-copy {
+  /* The Unlock — capital field (200 dots = $100B, 1 lit = PMs today) */
+  .unl-body {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 96px;
+    align-items: center;
+    margin-top: 8px;
+  }
+  .unl-field {
     display: flex;
     flex-direction: column;
-    gap: 32px;
-    justify-content: center;
+    gap: 24px;
   }
-  .s3b-copy p {
-    font-size: 28px;
-    line-height: 1.5;
-    color: var(--text-secondary);
-    font-weight: 400;
-    margin: 0;
-    letter-spacing: -0.005em;
+  .unl-dots {
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    row-gap: 26px;
+    justify-items: center;
+  }
+  .unl-dots span {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: rgba(var(--primary-rgb), 0.16);
+  }
+  .unl-dots span.lit {
+    background: var(--primary);
+    box-shadow: 0 0 16px rgba(var(--primary-rgb), 0.9);
+  }
+  .unl-cap {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+  .unl-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     max-width: 640px;
   }
-  .s3b-copy p em {
-    font-style: normal;
-    color: var(--text);
-    font-weight: 600;
-  }
-  /* Chart redesign — horizontal comparison */
-  .s3b-chart {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    padding: 24px 0 0 0;
-    justify-content: center;
-  }
-  .s3b-chart-title {
+  .unl-kicker {
     font-family: var(--font-mono);
-    font-size: 16px;
+    font-size: 15px;
     letter-spacing: 0.24em;
     text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 56px;
-    font-weight: 500;
-  }
-  .s3b-compare {
-    display: flex;
-    flex-direction: column;
-    gap: 48px;
-  }
-  .s3b-row {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto;
-    row-gap: 8px;
-  }
-  .s3b-row-num {
-    font-size: 56px;
-    font-weight: 700;
-    letter-spacing: -0.04em;
-    color: var(--text-secondary);
-    line-height: 1;
-  }
-  .s3b-row-small .s3b-row-num { color: var(--primary); }
-  .s3b-row-bar {
-    height: 16px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    position: relative;
-    overflow: visible;
-    margin-top: 4px;
-  }
-  .s3b-row-fill {
-    height: 100%;
-    background: linear-gradient(90deg, rgba(255,255,255,0.28) 0%, rgba(255,255,255,0.1) 100%);
-    position: relative;
-    min-width: 4px;
-  }
-  .s3b-row-fill.primary {
-    background: linear-gradient(90deg, var(--primary) 0%, rgba(var(--primary-rgb),0.6) 100%);
-    box-shadow: 0 0 16px rgba(var(--primary-rgb),0.28);
-    min-width: 8px;
-  }
-  .s3b-row-lbl {
-    display: flex;
-    align-items: baseline;
-    gap: 14px;
-    margin-top: 6px;
-  }
-  .s3b-row-lbl-name {
-    font-family: var(--font-mono);
-    font-size: 16px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--text-secondary);
-    font-weight: 500;
-  }
-  .s3b-row-lbl-name.primary { color: var(--primary); }
-  .s3b-row-lbl-sub {
-    font-size: 17px;
-    color: var(--text-muted);
-    font-weight: 400;
-  }
-  .s3b-gap-new {
-    margin-top: 64px;
-    padding: 28px 32px;
-    border: 1px solid rgba(var(--primary-rgb),0.35);
-    border-left: 3px solid var(--primary);
-    background: rgba(var(--primary-rgb),0.05);
-    display: flex;
-    align-items: center;
-    gap: 28px;
-  }
-  .s3b-gap-new .s3b-gap-n {
-    font-size: 72px;
-    font-weight: 700;
-    letter-spacing: -0.05em;
-    line-height: 0.9;
     color: var(--primary);
-  }
-  .s3b-gap-new .s3b-gap-lbl {
-    font-family: var(--font-mono);
-    font-size: 17px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--text-secondary);
-    line-height: 1.5;
     font-weight: 500;
+  }
+  .unl-h {
+    font-family: var(--font-display);
+    font-size: 46px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    color: var(--text);
+  }
+  .unl-copy p {
+    margin: 0;
+    font-size: 23px;
+    line-height: 1.55;
+    color: var(--text-secondary);
+    font-weight: 400;
+    text-wrap: pretty;
+  }
+  .unl-copy p b {
+    color: var(--text);
+    font-weight: 600;
   }
   /* === Slide · Creator Flywheel (v2 – hero claim) === */
   .cfw2 {
@@ -1062,7 +1010,22 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    padding-top: 44px;
+    z-index: 0;
+    padding: 76px 32px 32px;
+  }
+  .gtm-phase::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; top: 44px; bottom: 0;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--bg-card);
+    box-shadow: var(--card-shadow);
+    z-index: -1;
+  }
+  .gtm-phase.is-now::after {
+    border-color: rgba(var(--primary-rgb), 0.38);
+    background: color-mix(in srgb, var(--primary) 4%, var(--bg-card));
   }
   .gtm-node {
     position: absolute;
@@ -1209,12 +1172,20 @@
   .dist-stage:nth-child(3) { --accent: var(--primary); }
 
   .dist-stage-num {
-    font-family: var(--font-mono);
-    font-size: 18px;
-    letter-spacing: 0.24em;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    font-weight: 500;
+    position: absolute;
+    bottom: 20px;
+    right: 28px;
+    font-family: var(--font-numeral);
+    font-size: 72px;
+    line-height: 1;
+    color: var(--text-faint);
+  }
+  .dist-stage.primary {
+    border-color: color-mix(in srgb, var(--primary) 35%, var(--border));
+    background: color-mix(in srgb, var(--primary) 5%, var(--bg-card));
+  }
+  .dist-stage.primary .dist-stage-num {
+    color: rgba(var(--primary-rgb), 0.35);
   }
   .dist-stage-name {
     font-size: 40px;
@@ -1810,39 +1781,43 @@ without MMs or subsidies.</div>
     <div class="frame s3b">
       <div class="corner-mark">09 — The Unlock</div>
       <h2 class="title">Unlocking <span style="color:var(--primary)">$100B of DeFi liquidity.</span></h2>
-      <p class="sub">Creating a baseline of liquidity for all markets with the first profitable prediction market-maker.</p>
+      <p class="sub">Prediction markets starve for depth while $100B of DeFi capital hunts yield. The PMM connects them.</p>
 
-      <div class="s3b-body">
-        <div class="s3b-copy">
-          <p>Prediction markets can't absorb DeFi capital today.</p>
-          <p>The PMM is the first design where <b>passive liquidity is profitable.</b> Vaults earn. Markets get depth. Liquidity compounds.</p>
+      <div class="unl-body">
+        <div class="unl-field">
+          <div class="unl-dots" aria-hidden="true">
+            <span class="lit"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <div class="unl-cap">Each dot = $500M of TVL · the lit dot = all prediction markets today</div>
         </div>
+        <div class="unl-copy">
+          <div class="unl-kicker">Why now</div>
+          <div class="unl-h">Passive liquidity is finally profitable.</div>
+          <p>Every earlier design bled its LPs, so prediction markets can't absorb DeFi capital. <b>PMM vaults earn from the mechanism itself.</b> Vaults earn. Markets get depth. Liquidity compounds.</p>
+        </div>
+      </div>
 
-        <div class="s3b-chart">
-          <div class="s3b-chart-title">Addressable Capital · TVL</div>
-
-          <div class="s3b-compare">
-            <div class="s3b-row s3b-row-big">
-              <div class="s3b-row-num">$100B</div>
-              <div class="s3b-row-bar"><div class="s3b-row-fill" style="width:100%"></div></div>
-              <div class="s3b-row-lbl">
-                <div class="s3b-row-lbl-name">DeFi yield</div>
-              </div>
-            </div>
-            <div class="s3b-row s3b-row-small">
-              <div class="s3b-row-num">$550M</div>
-              <div class="s3b-row-bar"><div class="s3b-row-fill primary" style="width:0.55%"></div></div>
-              <div class="s3b-row-lbl">
-                <div class="s3b-row-lbl-name primary">Prediction markets</div>
-                <div class="s3b-row-lbl-sub">&lt;0.6% of DeFi yield capital</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="s3b-gap-new">
-            <div class="s3b-gap-n">200×</div>
-            <div class="s3b-gap-lbl">addressable gap<br>unlocked by PMM vaults</div>
-          </div>
+      <div class="mkt-strip">
+        <div class="mkt-stat">
+          <div class="mkt-n">$100B</div>
+          <div class="mkt-l">DeFi capital hunting yield</div>
+        </div>
+        <div class="mkt-stat">
+          <div class="mkt-n">$550M</div>
+          <div class="mkt-l">Prediction markets today</div>
+        </div>
+        <div class="mkt-stat is-melee">
+          <div class="mkt-n">200×</div>
+          <div class="mkt-l">Unlocked by PMM vaults</div>
         </div>
       </div>
     </div>
@@ -1924,12 +1899,12 @@ without MMs or subsidies.</div>
 
           <div class="dist-stage">
             <div class="dist-stage-num">02</div>
-            <div class="dist-stage-name">Referral Programs</div>
+            <div class="dist-stage-name">Referral programs</div>
             <div class="dist-stage-body">Targeted referral incentive programs and creator-led socials.</div>
             <div class="dist-stage-aud">Audience · PM-traders, bettors</div>
           </div>
 
-          <div class="dist-stage">
+          <div class="dist-stage primary">
             <div class="dist-stage-num">03</div>
             <div class="dist-stage-name">Autonomous content</div>
             <div class="dist-stage-body">Autonomous content engine producing hundreds of posts/day across cultural verticals.</div>
@@ -2103,4 +2078,6 @@ without MMs or subsidies.</div>
 
 
 
-<!-- deploy 1784141294 -->
+
+
+<!-- deploy 1784141807 -->
