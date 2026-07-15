@@ -45,7 +45,7 @@
   }
 
   /* Card elevation — raised surfaces get depth (Graphite: depth over glow). */
-  .s3-goal-card, .cmp, .vertical, .prod-cat, .team-card, .dist-stage {
+  .s3-goal-card, .cmp, .team-card, .dist-stage {
     box-shadow: var(--card-shadow);
   }
 
@@ -120,10 +120,8 @@
   .s3-goal-title,
   .s3b-chart-title, .s3b-gap-n,
   .cfw2-what,
-  .vertical-name,
   .dist-stage-num,
-  .backed-head,
-  .prod-cat-name {
+  .backed-head {
     font-family: var(--font-display);
   }
 
@@ -384,98 +382,71 @@
   }
   .slide-footnote a:hover { text-decoration: underline; }
 
-  /* === Slide 4 · Two Verticals === */
-  .verticals {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 36px;
+  /* === Slide 4 · Product (market wall) === */
+  .pmk-grid {
     flex: 1;
-    max-width: 1700px;
-  }
-  .vertical {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 48px 44px;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    position: relative;
-  }
-  .vertical.primary {
-    border-color: rgba(var(--primary-rgb),0.28);
-    background: linear-gradient(180deg, rgba(var(--primary-rgb),0.05) 0%, rgba(var(--primary-rgb),0.01) 100%);
-  }
-  .vertical-tag {
-    font-family: var(--font-mono);
-    font-size: 24px;
-    letter-spacing: 0.18em;
-    color: var(--text-muted);
-    text-transform: uppercase;
-  }
-  .vertical.primary .vertical-tag { color: var(--primary); }
-  .vertical-name {
-    font-size: 56px;
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 1.0;
-  }
-  .vertical-desc {
-    font-size: 26px;
-    line-height: 1.45;
-    color: var(--text-secondary);
-    font-weight: 400;
-  }
-  .vertical-note {
-    margin-top: auto;
-    font-size: 24px;
-    font-style: italic;
-    color: var(--text-muted);
-    padding-top: 28px;
-    border-top: 1px solid var(--border);
-    line-height: 1.4;
-  }
-  .vertical.primary .vertical-note {
-    color: var(--primary);
-    font-weight: 500;
-  }
-
-  /* === Slide 4 · Product offering === */
-  .prod-body {
     display: grid;
-    grid-template-columns: 1fr 1.45fr;
-    gap: 48px;
-    flex: 1;
-    max-width: 1700px;
-  }
-  .prod-cats {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto auto;
-    align-content: center;
+    grid-template-columns: repeat(3, 1fr);
     gap: 22px;
+    align-content: center;
+    max-width: 1700px;
   }
-  .prod-cat {
+  .pmk {
+    background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: 16px;
-    padding: 30px 28px;
-    background: var(--bg-card);
+    padding: 30px 30px 26px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    justify-content: center;
+    gap: 16px;
+    box-shadow: var(--card-shadow);
   }
-  .prod-cat-name {
-    font-size: 30px;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1.05;
+  .pmk-tag {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.22em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-weight: 500;
   }
-  .prod-cat-eg {
-    font-size: 20px;
-    color: var(--text-secondary);
-    line-height: 1.4;
-    font-weight: 400;
+  .pmk-q {
+    font-size: 27px;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.25;
+    color: var(--text);
+    flex: 1;
+  }
+  .pmk-odds {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .pmk-pct {
+    font-family: var(--font-numeral);
+    font-size: 34px;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+  }
+  .pmk-bar {
+    flex: 1;
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(255,255,255,0.07);
+    overflow: hidden;
+  }
+  .pmk-fill {
+    height: 100%;
+    border-radius: 2px;
+    background: var(--primary);
+  }
+  .pmk-by {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
   }
 
   /* === Slide 5 · YouTube Moment === */
@@ -1532,7 +1503,7 @@ without MMs or subsidies.</div>
       </div>
 
       <div class="cmp-callout">PMM is the <b>first market maker designed for assets that are guaranteed to expire.</b></div>
-      <div class="slide-footnote">Full mechanism · <a href="https://melee.markets/pmm">melee.markets/pmm</a></div>
+      <div class="slide-footnote">Full mechanism · <a href="https://pmm.melee.markets">pmm.melee.markets</a></div>
     </div>
   </section>
 
@@ -1540,41 +1511,45 @@ without MMs or subsidies.</div>
   <section data-label="Product">
     <div class="frame">
       <div class="corner-mark">04 — Product</div>
-      <h2 class="title">Prediction markets <span style="color:var(--primary)">on everything.</span></h2>
-      <p class="sub">Permissionless markets across every objective truth — created and traded by anyone, tradeable from day one.</p>
+      <h2 class="title">The <span style="color:var(--primary)">people's</span> prediction market.</h2>
+      <p class="sub">Anyone launches a market on anything. Liquid from the first dollar.</p>
 
-      <div class="prod-body">
-        <div class="vertical primary">
-          <div class="vertical-tag">Prediction Markets</div>
-          <div class="vertical-name">Objective<br>truths.</div>
-          <div class="vertical-desc">Sports, politics, economics — the category Polymarket and Kalshi validated. PMM makes them permissionless and global.</div>
-          <div class="vertical-note">Validated category. New mechanism.</div>
+      <div class="pmk-grid">
+        <div class="pmk">
+          <div class="pmk-tag">Crypto</div>
+          <div class="pmk-q">BTC above $120K by Friday?</div>
+          <div class="pmk-odds"><span class="pmk-pct">63%</span><div class="pmk-bar"><div class="pmk-fill" style="width:63%"></div></div></div>
+          <div class="pmk-by">Launched by @solmax</div>
         </div>
-        <div class="prod-cats">
-          <div class="prod-cat">
-            <div class="prod-cat-name">Sports</div>
-            <div class="prod-cat-eg">Games, matchups, player props, season outcomes.</div>
-          </div>
-          <div class="prod-cat">
-            <div class="prod-cat-name">Politics</div>
-            <div class="prod-cat-eg">Elections, policy, geopolitical events.</div>
-          </div>
-          <div class="prod-cat">
-            <div class="prod-cat-name">Economics</div>
-            <div class="prod-cat-eg">Rates, inflation prints, macro releases.</div>
-          </div>
-          <div class="prod-cat">
-            <div class="prod-cat-name">Crypto</div>
-            <div class="prod-cat-eg">Price levels, launches, on-chain milestones.</div>
-          </div>
-          <div class="prod-cat">
-            <div class="prod-cat-name">Culture</div>
-            <div class="prod-cat-eg">Awards, releases, box office, charts.</div>
-          </div>
-          <div class="prod-cat">
-            <div class="prod-cat-name">Breaking news</div>
-            <div class="prod-cat-eg">Any event, spun up the moment it happens.</div>
-          </div>
+        <div class="pmk">
+          <div class="pmk-tag">Sports</div>
+          <div class="pmk-q">Arsenal win the Premier League?</div>
+          <div class="pmk-odds"><span class="pmk-pct">41%</span><div class="pmk-bar"><div class="pmk-fill" style="width:41%"></div></div></div>
+          <div class="pmk-by">Launched by @gooner_index</div>
+        </div>
+        <div class="pmk">
+          <div class="pmk-tag">Politics</div>
+          <div class="pmk-q">Milei re-elected in 2027?</div>
+          <div class="pmk-odds"><span class="pmk-pct">55%</span><div class="pmk-bar"><div class="pmk-fill" style="width:55%"></div></div></div>
+          <div class="pmk-by">Launched by @lataminsider</div>
+        </div>
+        <div class="pmk">
+          <div class="pmk-tag">Economics</div>
+          <div class="pmk-q">Fed cuts rates in September?</div>
+          <div class="pmk-odds"><span class="pmk-pct">71%</span><div class="pmk-bar"><div class="pmk-fill" style="width:71%"></div></div></div>
+          <div class="pmk-by">Launched by @macrodesk</div>
+        </div>
+        <div class="pmk">
+          <div class="pmk-tag">Culture</div>
+          <div class="pmk-q">GTA VI ships before December?</div>
+          <div class="pmk-odds"><span class="pmk-pct">34%</span><div class="pmk-bar"><div class="pmk-fill" style="width:34%"></div></div></div>
+          <div class="pmk-by">Launched by @leakwatch</div>
+        </div>
+        <div class="pmk">
+          <div class="pmk-tag">Breaking news</div>
+          <div class="pmk-q">Starship reaches orbit this flight?</div>
+          <div class="pmk-odds"><span class="pmk-pct">58%</span><div class="pmk-bar"><div class="pmk-fill" style="width:58%"></div></div></div>
+          <div class="pmk-by">Launched 3 min after the story broke</div>
         </div>
       </div>
     </div>
@@ -1714,14 +1689,14 @@ without MMs or subsidies.</div>
         <div class="comp-cell">Market makers</div>
 
         <div class="comp-rowlbl">Payouts</div>
-        <div class="comp-cell is-melee"><b>Uncapped upside</b><br><span style="color:var(--text-muted);font-size:17px;">Floor locked at entry</span></div>
+        <div class="comp-cell is-melee"><b>Ratchet with volatility</b></div>
         <div class="comp-cell">Fixed at entry</div>
         <div class="comp-cell">Fixed at entry</div>
 
       </div>
 
       <div class="comp-callout-wrap">
-        <div class="comp-callout-lbl">The take</div>
+        <div class="comp-callout-lbl">Key idea</div>
         <div class="comp-callout-body">Incumbents can't open market creation: <b>an order book without a market maker is a dead market.</b> They list what desks will quote. PMM markets trade from the first dollar.</div>
       </div>
     </div>
@@ -2002,4 +1977,6 @@ without MMs or subsidies.</div>
 
 
 
-<!-- deploy 1784100883 -->
+
+
+<!-- deploy 1784101756 -->
