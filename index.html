@@ -5,7 +5,7 @@
 <title>Melee — Seed Deck</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gotic+One&amp;family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
 <script src="deck-stage.js"></script>
 <style>
   /* ============================================================
@@ -39,8 +39,23 @@
 
     --elev-1: 0 1px 2px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06);
     --elev-2: 0 1px 2px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06), 0 12px 32px -16px rgba(var(--primary-rgb),0.18);
+    --card-shadow: 0 1px 2px rgba(0,0,0,0.4), 0 10px 30px -14px rgba(0,0,0,0.55);
+    --font-numeral: 'Dela Gotic One', 'Inter', sans-serif;
     --glow-strength: 0.12;
   }
+
+  /* Card elevation — raised surfaces get depth (Graphite: depth over glow). */
+  .s3-goal-card, .cmp, .vertical, .prod-cat, .s7-hero, .team-card, .dist-stage {
+    box-shadow: var(--card-shadow);
+  }
+
+  /* Showcase numerals in Dela Gotic (matches /v1 markets display). Units/labels stay sans. */
+  .s2-col-stat, .s3b-row-num, .s10-amount em, .dist-proof-stat b,
+  .s3-goal-num, .s7-stat .n {
+    font-family: var(--font-numeral);
+    letter-spacing: -0.01em;
+  }
+  .s2-col-stat-u { font-family: var(--font-body); }
 
   html, body {
     margin: 0;
@@ -102,11 +117,9 @@
   /* Display headings + hero numerals route through --font-display.
      Graphite: --font-display = Inter (no-op). Editorial: = Fraunces serif. */
   .headline,
-  .s3-goal-num, .s3-goal-title,
-  .s2-col-stat,
-  .s3b-row-num, .s3b-chart-title, .s3b-gap-n,
+  .s3-goal-title,
+  .s3b-chart-title, .s3b-gap-n,
   .cfw2-what,
-  .s7-stat .n,
   .vertical-name,
   .dist-stage-num,
   .gtm-traction-n,
@@ -440,7 +453,8 @@
   .prod-cats {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: auto auto;
+    align-content: center;
     gap: 22px;
   }
   .prod-cat {
@@ -1113,9 +1127,9 @@
     gap: 10px;
   }
   .gtm-phase:not(.is-now) .gtm-kgt {
-    border-color: rgba(255,255,255,0.04);
-    background: transparent;
-    opacity: 0.55;
+    border-color: var(--border);
+    background: rgba(255,255,255,0.015);
+    opacity: 0.78;
   }
   .gtm-phase.is-now .gtm-kgt {
     border-color: color-mix(in srgb, var(--primary) 50%, transparent);
@@ -1402,8 +1416,8 @@
     border-top: 4px solid var(--accent, var(--text-muted));
   }
   .dist-stage:nth-child(1) { --accent: var(--primary); }
-  .dist-stage:nth-child(2) { --accent: color-mix(in srgb, var(--primary) 50%, var(--cyan)); }
-  .dist-stage:nth-child(3) { --accent: var(--cyan); }
+  .dist-stage:nth-child(2) { --accent: var(--primary); }
+  .dist-stage:nth-child(3) { --accent: var(--primary); }
 
   .dist-stage-num {
     font-family: var(--font-mono);
@@ -2386,4 +2400,6 @@ without MMs or subsidies.</div>
 </body></html>
 
 
-<!-- deploy 1784095909 -->
+
+
+<!-- deploy 1784098254 -->
