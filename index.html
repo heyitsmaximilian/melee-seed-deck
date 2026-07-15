@@ -1,0 +1,2352 @@
+<!DOCTYPE html><html lang="en"><head>
+
+
+<meta charset="UTF-8">
+<title>Melee — Seed Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<script src="deck-stage.js"></script>
+<style>
+  :root {
+    --bg: #0a0b0d;
+    --bg-card: #0f1013;
+    --bg-card-hover: #151619;
+    --primary: #a28cfc;
+    --green: #34d399;
+    --cyan: #22d3ee;
+    --amber: #fbbf24;
+    --red: #f87171;
+    --text: #ffffff;
+    --text-secondary: rgba(255,255,255,0.55);
+    --text-muted: rgba(255,255,255,0.32);
+    --text-faint: rgba(255,255,255,0.18);
+    --text-tertiary: rgba(255,255,255,0.4);
+    --border: rgba(255,255,255,0.06);
+    --border-hover: rgba(255,255,255,0.12);
+  }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #000;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  deck-stage section {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.01em;
+  }
+
+  /* Slide transitions handled by deck-stage's own opacity fade. */
+  .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; letter-spacing: 0.02em; }
+
+  /* === Slide frame utilities === */
+  .frame {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 88px 96px 72px 96px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .corner-mark {
+    position: absolute;
+    top: 44px;
+    left: 96px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px;
+    letter-spacing: 0.28em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .corner-mark::before {
+    content: "";
+    display: inline-block;
+    width: 28px;
+    height: 1px;
+    background: var(--text-muted);
+    vertical-align: middle;
+    margin-right: 14px;
+    margin-bottom: 4px;
+  }
+  .title {
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    margin: 0;
+  }
+
+  /* === Slide 1 · North Star === */
+  .s1 {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 100px;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg);
+  }
+  .s1-glow {
+    position: absolute;
+    width: 1200px; height: 1200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(162,140,252,0.22) 0%, rgba(162,140,252,0) 60%);
+    top: -300px; left: 50%;
+    transform: translateX(-50%);
+    filter: blur(80px);
+  }
+  .s1-wordmark {
+    position: absolute;
+    top: 56px; left: 100px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: 28px;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+  .s1-wordmark::before {
+    content: "";
+    display: inline-block;
+    width: 10px; height: 10px;
+    background: var(--primary);
+    border-radius: 50%;
+    margin-right: 14px;
+    vertical-align: middle;
+    box-shadow: 0 0 24px rgba(162,140,252,0.9);
+  }
+  .s1-meta {
+    position: absolute;
+    top: 56px; right: 100px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 24px;
+    letter-spacing: 0.22em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+  .s1 .headline {
+    font-size: 152px;
+    line-height: 1.0;
+    font-weight: 700;
+    letter-spacing: -0.045em;
+    margin: 0;
+    max-width: 1700px;
+    position: relative;
+    z-index: 2;
+  }
+  .s1 .headline em {
+    font-style: normal;
+    color: var(--primary);
+  }
+  .s1 .sub {
+    margin-top: 56px;
+    font-size: 34px;
+    line-height: 1.4;
+    font-weight: 400;
+    color: var(--text-secondary);
+    max-width: 1200px;
+    position: relative;
+    z-index: 2;
+  }
+  .s1-footer {
+    position: absolute;
+    bottom: 56px; left: 100px; right: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 24px;
+    letter-spacing: 0.18em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+  .s1-footer span { white-space: nowrap; }
+
+  /* === Generic slide title styles === */
+  .frame .title {
+    font-size: 80px;
+    line-height: 1.02;
+    margin: 40px 0 20px 0;
+    max-width: 1600px;
+  }
+  .frame .sub {
+    font-size: 28px;
+    color: var(--text-secondary);
+    font-weight: 400;
+    max-width: 1400px;
+    margin: 0 0 56px 0;
+    line-height: 1.4;
+    letter-spacing: -0.005em;
+  }
+
+  /* === Slide 2 · The Goal (3 requirements) === */
+  .s3-goal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+    max-width: 1500px;
+    margin: 0 auto;
+  }
+  .s3-goal-card {
+    position: relative;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 48px 44px 52px 44px;
+    min-height: 440px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .s3-goal-card.primary {
+    border-color: rgba(162,140,252,0.35);
+    background:
+      radial-gradient(900px 500px at 0% 0%, rgba(162,140,252,0.09) 0%, rgba(162,140,252,0) 55%),
+      var(--bg-card);
+  }
+  .s3-goal-num {
+    position: absolute;
+    top: 40px; right: 44px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 120px;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    line-height: 1;
+    color: rgba(255,255,255,0.05);
+    pointer-events: none;
+  }
+  .s3-goal-icon {
+    width: 56px; height: 56px;
+    border-radius: 14px;
+    background: rgba(162,140,252,0.1);
+    border: 1px solid rgba(162,140,252,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    margin-bottom: 44px;
+  }
+  .s3-goal-title {
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 22px;
+  }
+  .s3-goal-desc {
+    font-size: 26px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    font-weight: 400;
+  }
+  .s3-goal-tag {
+    margin-top: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 24px;
+    letter-spacing: 0.14em;
+    color: var(--primary);
+    text-transform: uppercase;
+    padding-top: 32px;
+  }
+
+  /* === Slide 3 · Mechanism Comparison === */
+  .cmp {
+    display: grid;
+    grid-template-columns: 260px repeat(2, 1fr);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+    background: var(--bg-card);
+  }
+  .cmp > div {
+    padding: 22px 18px;
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .cmp > div:nth-child(3n) { border-right: none; }
+  .cmp > div:nth-last-child(-n+3) { border-bottom: none; }
+  .cmp .hdr {
+    background: #0a0b0d;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 24px;
+    letter-spacing: 0.08em;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    justify-content: center;
+    text-align: center;
+    font-weight: 500;
+    line-height: 1.25;
+  }
+  .cmp .rowlbl {
+    font-weight: 600;
+    font-size: 28px;
+    color: var(--text);
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+  }
+  .cmp .val {
+    justify-content: center;
+    font-weight: 600;
+    font-size: 32px;
+    letter-spacing: -0.01em;
+  }
+  .cmp .val.bad { color: var(--red); }
+  .cmp .val.good { color: var(--green); }
+  .cmp .val.pmm-row { background: rgba(162,140,252,0.1); color: var(--primary); font-weight: 700; }
+  .cmp .rowlbl.pmm-row { background: rgba(162,140,252,0.1); color: var(--primary); font-weight: 700; border-left: 3px solid var(--primary); }
+  .cmp-callout {
+    margin-top: 36px;
+    padding: 36px 44px;
+    border: 1px solid rgba(162,140,252,0.35);
+    border-radius: 14px;
+    background: rgba(162,140,252,0.06);
+    font-size: 32px;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    line-height: 1.4;
+    color: var(--text);
+    text-align: center;
+  }
+  .cmp-callout b { color: var(--primary); font-weight: 700; }
+  .slide-footnote {
+    margin-top: 24px;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+  .slide-footnote a {
+    color: var(--primary);
+    text-decoration: none;
+    text-transform: none;
+    letter-spacing: 0.04em;
+  }
+  .slide-footnote a:hover { text-decoration: underline; }
+
+  /* === Slide 4 · Two Verticals === */
+  .verticals {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+    flex: 1;
+    max-width: 1700px;
+  }
+  .vertical {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 48px 44px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    position: relative;
+  }
+  .vertical.primary {
+    border-color: rgba(162,140,252,0.28);
+    background: linear-gradient(180deg, rgba(162,140,252,0.05) 0%, rgba(162,140,252,0.01) 100%);
+  }
+  .vertical-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 24px;
+    letter-spacing: 0.18em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+  .vertical.primary .vertical-tag { color: var(--primary); }
+  .vertical-name {
+    font-size: 56px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.0;
+  }
+  .vertical-desc {
+    font-size: 26px;
+    line-height: 1.45;
+    color: var(--text-secondary);
+    font-weight: 400;
+  }
+  .vertical-note {
+    margin-top: auto;
+    font-size: 24px;
+    font-style: italic;
+    color: var(--text-muted);
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+    line-height: 1.4;
+  }
+  .vertical.primary .vertical-note {
+    color: var(--primary);
+    font-weight: 500;
+  }
+
+  /* === Slide 4 · Product offering === */
+  .prod-body {
+    display: grid;
+    grid-template-columns: 1fr 1.45fr;
+    gap: 48px;
+    flex: 1;
+    max-width: 1700px;
+  }
+  .prod-cats {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 22px;
+  }
+  .prod-cat {
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 30px 28px;
+    background: var(--bg-card);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    justify-content: center;
+  }
+  .prod-cat-name {
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+  .prod-cat-eg {
+    font-size: 20px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    font-weight: 400;
+  }
+
+  /* === Slide 5 · YouTube Moment === */
+  .s2-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-top: 16px;
+  }
+  .s2-analogy {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 96px;
+    align-items: start;
+    flex: 1;
+    padding-top: 48px;
+  }
+  .s2-col {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .s2-col.after {
+    padding-left: 48px;
+    border-left: 1px solid var(--border);
+  }
+  .s2-col-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 28px;
+    font-weight: 500;
+  }
+  .s2-col.after .s2-col-label {
+    color: var(--primary);
+  }
+  .s2-col-stat {
+    font-size: 104px;
+    font-weight: 700;
+    letter-spacing: -0.055em;
+    line-height: 0.92;
+    color: var(--text);
+    margin-bottom: 36px;
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .s2-col.after .s2-col-stat {
+    color: var(--primary);
+  }
+  .s2-col-stat-u {
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .s2-col-body {
+    font-size: 24px;
+    line-height: 1.55;
+    color: var(--text-secondary);
+    font-weight: 400;
+    letter-spacing: -0.005em;
+    text-wrap: pretty;
+    max-width: 540px;
+  }
+  .s2-col-body b {
+    color: var(--text);
+    font-weight: 600;
+  }
+  .s2-verdict {
+    margin-top: 48px;
+    padding-top: 36px;
+    border-top: 1px solid var(--border);
+    font-size: 30px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 48px;
+    align-items: end;
+  }
+  .s2-verdict .v-side { }
+  .s2-verdict .v-side.after { text-align: right; }
+  .s2-verdict .v-lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+  .s2-verdict .v-side.after .v-lbl { color: var(--primary); }
+  .s2-verdict .before { color: var(--text-secondary); }
+  .s2-verdict .after-txt { color: var(--text); }
+  .s2-verdict .after-txt b { color: var(--primary); font-weight: 700; }
+  .s2-verdict .v-arrow {
+    width: 72px;
+    height: 1px;
+    background: var(--primary);
+    opacity: 0.5;
+    position: relative;
+    margin-bottom: 18px;
+  }
+  .s2-verdict .v-arrow::after {
+    content: "";
+    position: absolute;
+    right: -1px;
+    top: -5px;
+    width: 10px;
+    height: 10px;
+    border-right: 1px solid var(--primary);
+    border-top: 1px solid var(--primary);
+    transform: rotate(45deg);
+  }
+
+  /* === Slide 6 · Passive Capital === */
+  .s3b .title { max-width: 1800px; font-size: 80px; }
+  .s3b .title em { font-style: normal; color: var(--primary); }
+  .s3b-body {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 120px;
+    flex: 1;
+    align-items: stretch;
+  }
+  .s3b-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    justify-content: center;
+  }
+  .s3b-copy p {
+    font-size: 28px;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    font-weight: 400;
+    margin: 0;
+    letter-spacing: -0.005em;
+    max-width: 640px;
+  }
+  .s3b-copy p em {
+    font-style: normal;
+    color: var(--text);
+    font-weight: 600;
+  }
+  .s3b-flywheel {
+    margin-top: 12px;
+    padding: 20px 24px;
+    border-left: 2px solid var(--primary);
+    background: rgba(162,140,252,0.05);
+  }
+  .s3b-flywheel-lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    letter-spacing: 0.22em;
+    color: var(--primary);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .s3b-flywheel-body {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px;
+    color: var(--text);
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+  }
+
+  /* Chart redesign — horizontal comparison */
+  .s3b-chart {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 24px 0 0 0;
+    justify-content: center;
+  }
+  .s3b-chart-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 56px;
+    font-weight: 500;
+  }
+  .s3b-compare {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+  .s3b-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    row-gap: 8px;
+  }
+  .s3b-row-num {
+    font-size: 56px;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    color: var(--text-secondary);
+    line-height: 1;
+  }
+  .s3b-row-small .s3b-row-num { color: var(--primary); }
+  .s3b-row-bar {
+    height: 16px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    position: relative;
+    overflow: visible;
+    margin-top: 4px;
+  }
+  .s3b-row-fill {
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255,255,255,0.28) 0%, rgba(255,255,255,0.1) 100%);
+    position: relative;
+    min-width: 4px;
+  }
+  .s3b-row-fill.primary {
+    background: linear-gradient(90deg, var(--primary) 0%, rgba(162,140,252,0.6) 100%);
+    box-shadow: 0 0 20px rgba(162,140,252,0.5);
+    min-width: 8px;
+    min-width: 8px;
+  }
+  .s3b-row-lbl {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-top: 6px;
+  }
+  .s3b-row-lbl-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+  .s3b-row-lbl-name.primary { color: var(--primary); }
+  .s3b-row-lbl-sub {
+    font-size: 17px;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+  .s3b-gap-new {
+    margin-top: 64px;
+    padding: 28px 32px;
+    border: 1px solid rgba(162,140,252,0.35);
+    border-left: 3px solid var(--primary);
+    background: rgba(162,140,252,0.05);
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+  .s3b-gap-new .s3b-gap-n {
+    font-size: 72px;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    line-height: 0.9;
+    color: var(--primary);
+  }
+  .s3b-gap-new .s3b-gap-lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 17px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    font-weight: 500;
+  }
+  /* === Slide · Creator Flywheel (v2 – hero claim) === */
+  .cfw2 {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 24px;
+    gap: 72px;
+  }
+
+  /* HERO: two stacked claims */
+  .cfw2-hero {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .cfw2-claim {
+    display: grid;
+    grid-template-columns: 240px 1fr 520px;
+    align-items: center;
+    gap: 40px;
+    padding: 28px 0;
+    border-top: 1px solid var(--border);
+    opacity: 0.62;
+  }
+  .cfw2-claim:last-child {
+    border-bottom: none;
+    border-top: 1px solid var(--border);
+    padding: 56px 0 28px;
+    opacity: 1;
+  }
+  .cfw2-who {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px;
+    letter-spacing: 0.22em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .cfw2-line {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .cfw2-verb {
+    font-size: 36px;
+    font-weight: 400;
+    color: var(--text-muted);
+    letter-spacing: -0.01em;
+  }
+  .cfw2-what {
+    font-size: 96px;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+    color: var(--text-secondary);
+  }
+  .cfw2-us .cfw2-who { color: var(--primary); font-weight: 600; }
+  .cfw2-us .cfw2-what { color: var(--primary); }
+  .cfw2-us .cfw2-what {
+    font-size: 128px;
+  }
+  .cfw2-us .cfw2-verb {
+    font-size: 40px;
+    color: var(--text-secondary);
+  }
+
+  /* Dot fields: visualize the scale difference */
+  .cfw2-dots {
+    display: grid;
+    grid-template-columns: repeat(25, 1fr);
+    gap: 6px;
+    align-self: stretch;
+    align-items: center;
+    justify-content: end;
+    padding-left: 40px;
+  }
+  .cfw2-dots span {
+    width: 6px;
+    height: 6px;
+    background: var(--text-muted);
+    border-radius: 50%;
+    opacity: 0.55;
+  }
+  /* Them: just 50 dots (the component stops there) */
+  .cfw2-them .cfw2-dots {
+    grid-template-columns: repeat(10, 1fr);
+    grid-auto-rows: 6px;
+    gap: 8px;
+    max-width: 140px;
+    justify-self: end;
+    padding-left: 0;
+  }
+  /* Us: dense internet-sized field */
+  .cfw2-dots-us {
+    grid-template-columns: repeat(40, 1fr);
+    grid-auto-rows: 5px;
+    gap: 4px;
+    max-width: 520px;
+    justify-self: end;
+    padding-left: 0;
+  }
+  .cfw2-dots-us span {
+    background: var(--primary);
+    opacity: 0.5;
+    width: 5px;
+    height: 5px;
+  }
+
+  /* Evidence row */
+  .cfw2-evidence {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+    padding-top: 8px;
+  }
+  .cfw2-proof {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 20px;
+    border-left: 2px solid var(--primary);
+  }
+  .cfw2-proof-k {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    letter-spacing: 0.22em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .cfw2-proof-v {
+    font-size: 24px;
+    line-height: 1.45;
+    color: var(--text-secondary);
+    font-weight: 400;
+  }
+
+  /* === Slide 6 · Competitive === */
+  .comp {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 220px 1fr 1fr 1fr;
+    gap: 0;
+    margin-top: 28px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--bg-card);
+  }
+  .comp > div {
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .comp > div:nth-child(4n) { border-right: none; }
+  .comp > div:nth-last-child(-n+4) { border-bottom: none; }
+
+  .comp .comp-hdr {
+    padding: 32px 28px;
+    background: #0a0b0d;
+  }
+  .comp .comp-hdr-co {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.0;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+  .comp .comp-hdr-role {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    letter-spacing: 0.22em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .comp .comp-hdr.is-melee {
+    background: color-mix(in srgb, var(--primary) 12%, #0a0b0d);
+    border-bottom: 1px solid color-mix(in srgb, var(--primary) 40%, var(--border));
+  }
+  .comp .comp-hdr.is-melee .comp-hdr-co { color: var(--primary); }
+  .comp .comp-hdr.is-melee .comp-hdr-role { color: color-mix(in srgb, var(--primary) 80%, white); }
+
+  .comp .comp-rowlbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-weight: 500;
+    background: #0a0b0d;
+  }
+
+  .comp .comp-cell {
+    font-size: 22px;
+    line-height: 1.35;
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+  .comp .comp-cell.is-melee {
+    background: color-mix(in srgb, var(--primary) 5%, transparent);
+    color: var(--text);
+    border-left: 2px solid color-mix(in srgb, var(--primary) 60%, transparent);
+    padding-left: 22px;
+  }
+  .comp .comp-cell.is-melee b { color: var(--primary); font-weight: 600; }
+
+  .comp-callout-wrap {
+    margin-top: 28px;
+    padding: 22px 28px;
+    border: 1px solid color-mix(in srgb, var(--primary) 40%, var(--border));
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--primary) 5%, transparent);
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+  }
+  .comp-callout-lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    letter-spacing: 0.24em;
+    color: var(--primary);
+    text-transform: uppercase;
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+  .comp-callout-body {
+    font-size: 24px;
+    color: var(--text-secondary);
+    line-height: 1.45;
+  }
+  .comp-callout-body b { color: var(--text); font-weight: 600; }
+
+  /* === Slide 6 · G2M (Sequencing) (rebuilt) === */
+  .gtm {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 48px;
+    position: relative;
+    align-items: stretch;
+    margin-top: 24px;
+  }
+  .gtm::before {
+    content: "";
+    position: absolute;
+    top: 18px;
+    left: 6px;
+    right: 48px;
+    height: 1px;
+    background: linear-gradient(90deg, var(--primary) 0%, var(--primary) 33%, var(--border) 33%, var(--border) 100%);
+    opacity: 0.5;
+  }
+  .gtm-phase {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-top: 44px;
+  }
+  .gtm-node {
+    position: absolute;
+    top: 11px;
+    left: 0;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--border);
+    z-index: 2;
+  }
+  .gtm-phase.is-now .gtm-node {
+    background: var(--primary);
+    border-color: var(--primary);
+    box-shadow: 0 0 20px var(--primary);
+  }
+  .gtm-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px;
+    letter-spacing: 0.26em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+  .gtm-phase.is-now .gtm-label { color: var(--primary); }
+  .gtm-name {
+    font-size: 44px;
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 1.0;
+    margin-bottom: 16px;
+    color: var(--text);
+  }
+  .gtm-desc {
+    font-size: 20px;
+    line-height: 1.45;
+    color: var(--text-secondary);
+    font-weight: 400;
+    margin-bottom: 28px;
+    max-width: 30ch;
+  }
+  .gtm-audience {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .gtm-audience b {
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  /* Alpha "Then" phase — traction block instead of KGT */
+  .gtm-traction {
+    margin-top: auto;
+    padding: 18px 20px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.015);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .gtm-traction-kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.26em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .gtm-traction-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .gtm-traction-n {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+  .gtm-traction-lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  .gtm-kgt {
+    margin-top: auto;
+    padding: 22px 24px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.015);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .gtm-phase:not(.is-now) .gtm-kgt {
+    border-color: rgba(255,255,255,0.04);
+    background: transparent;
+    opacity: 0.55;
+  }
+  .gtm-phase.is-now .gtm-kgt {
+    border-color: color-mix(in srgb, var(--primary) 50%, transparent);
+    background: color-mix(in srgb, var(--primary) 6%, transparent);
+  }
+  .gtm-kgt-kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    letter-spacing: 0.24em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .gtm-phase.is-now .gtm-kgt-kicker { color: var(--primary); }
+  .gtm-kgt-name {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    line-height: 1.15;
+  }
+  .gtm-kgt-desc {
+    font-size: 19px;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    font-weight: 400;
+  }
+
+  /* GTM bullet points + progression / tweak hooks */
+  .gtm-points {
+    list-style: none;
+    margin: 0 0 28px 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .gtm-points li {
+    position: relative;
+    padding-left: 28px;
+    font-size: 22px;
+    line-height: 1.4;
+    color: var(--text-secondary);
+    font-weight: 400;
+    letter-spacing: -0.005em;
+  }
+  .gtm-points li::before {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 11px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--text-muted);
+  }
+  .gtm-phase.is-now .gtm-points li::before {
+    background: var(--primary);
+    box-shadow: 0 0 10px var(--primary);
+  }
+  .gtm::before { background: var(--border) !important; opacity: 1 !important; }
+  .gtm.no-line::before { display: none; }
+  .gtm.no-kgt .gtm-kgt { display: none; }
+
+  /* Slide 7 compounding outcome bar */
+  .s7-outcome {
+    margin-top: 48px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: baseline;
+    gap: 32px;
+  }
+  .s7-outcome-lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.28em;
+    color: var(--primary);
+    text-transform: uppercase;
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+  .s7-outcome-body {
+    font-size: 24px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+  }
+  .s7-outcome-body b {
+    color: var(--primary);
+    font-weight: 700;
+  }
+  .s7-arrow {
+    color: var(--primary);
+    opacity: 0.6;
+    margin: 0 6px;
+    font-weight: 500;
+  }
+
+  /* === Slide 8 · ICP Matrix === */
+
+  .s6-body {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 80px;
+    flex: 1;
+  }
+  .matrix6 {
+    display: grid;
+    grid-template-columns: 240px repeat(4, 1fr);
+    grid-template-rows: 96px repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--border);
+    border-left: 1px solid var(--border);
+  }
+  .m6-col {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 17px;
+    letter-spacing: 0.18em;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    text-align: left;
+    padding: 0 0 16px 16px;
+    line-height: 1.35;
+    border-right: 1px solid var(--border);
+    font-weight: 500;
+    position: relative;
+  }
+  .m6-col-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--c);
+    box-shadow: 0 0 10px var(--c);
+    position: absolute;
+    top: 20px;
+    left: 16px;
+  }
+  .m6-row-label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 24px 0 0;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .m6-row-name {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  .m6-row-sub {
+    font-size: 18px;
+    color: var(--text-muted);
+    margin-top: 4px;
+    font-weight: 400;
+  }
+  .m6-cell {
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 88px;
+    background: transparent;
+    position: relative;
+  }
+  .m6-cell.on-cyan { background: rgba(34,211,238,0.06); }
+  .m6-cell.on-green { background: rgba(52,211,153,0.06); }
+  .m6-cell.on-amber { background: rgba(251,191,36,0.06); }
+  .m6-cell.on-purple { background: rgba(162,140,252,0.06); }
+  .m6-dot { width: 12px; height: 12px; border-radius: 50%; opacity: 0; }
+  .m6-cell.on-cyan .m6-dot, .m6-cell.on-green .m6-dot, .m6-cell.on-amber .m6-dot, .m6-cell.on-purple .m6-dot { opacity: 1; }
+  .on-cyan .m6-dot { background: var(--cyan); box-shadow: 0 0 14px rgba(34,211,238,0.7); }
+  .on-green .m6-dot { background: var(--green); box-shadow: 0 0 14px rgba(52,211,153,0.7); }
+  .on-amber .m6-dot { background: var(--amber); box-shadow: 0 0 14px rgba(251,191,36,0.7); }
+  .on-purple .m6-dot { background: var(--primary); box-shadow: 0 0 14px rgba(162,140,252,0.7); }
+  .m6-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+  }
+  .m6-side-block {
+    padding-left: 20px;
+    border-left: 1px solid var(--border);
+  }
+  .m6-side-kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px;
+    letter-spacing: 0.24em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+  .m6-side-block:first-child .m6-side-kicker { color: var(--primary); }
+  .m6-side-body {
+    font-size: 22px;
+    line-height: 1.45;
+    color: var(--text);
+    font-weight: 400;
+    margin: 0;
+    letter-spacing: -0.005em;
+    text-wrap: pretty;
+  }
+  .m6-side-stat {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .m6-side-stat .n {
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 1;
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+  }
+  .m6-side-stat .lbl {
+    font-size: 16px;
+    color: var(--text-secondary);
+    max-width: 240px;
+    line-height: 1.45;
+  }
+
+  /* === Slide 8 · Distribution (funnel) === */
+  .dist-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 24px;
+  }
+
+  .dist-axis {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    padding: 0 4px;
+    margin-bottom: 4px;
+  }
+  .dist-axis-end {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+  .dist-axis-end.left { color: var(--primary); }
+  .dist-axis-end.right { color: var(--cyan); }
+  .dist-axis-track {
+    flex: 1;
+    height: 2px;
+    border-radius: 2px;
+    background: linear-gradient(90deg,
+      color-mix(in srgb, var(--primary) 90%, transparent) 0%,
+      color-mix(in srgb, var(--primary) 60%, var(--cyan)) 50%,
+      color-mix(in srgb, var(--cyan) 90%, transparent) 100%);
+    position: relative;
+  }
+
+  .dist-stages {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .dist-stage {
+    padding: 44px 40px 40px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: color-mix(in srgb, var(--bg-card) 70%, transparent);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    position: relative;
+    border-top: 4px solid var(--accent, var(--text-muted));
+  }
+  .dist-stage:nth-child(1) { --accent: var(--primary); }
+  .dist-stage:nth-child(2) { --accent: color-mix(in srgb, var(--primary) 50%, var(--cyan)); }
+  .dist-stage:nth-child(3) { --accent: var(--cyan); }
+
+  .dist-stage-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px;
+    letter-spacing: 0.24em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .dist-stage-name {
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: var(--text);
+    margin-top: 4px;
+  }
+  .dist-stage-body {
+    font-size: 22px;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    margin-top: 6px;
+  }
+  .dist-stage-aud {
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px;
+    letter-spacing: 0.18em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .dist-proof {
+    display: grid;
+    grid-template-columns: auto 1fr 1fr 1fr;
+    align-items: center;
+    gap: 36px;
+    padding: 32px 40px;
+    border: 1px solid color-mix(in srgb, var(--primary) 28%, transparent);
+    border-radius: 14px;
+    background: color-mix(in srgb, var(--primary) 4%, var(--bg-card));
+    color: var(--text-secondary);
+    line-height: 1.25;
+  }
+  .dist-proof-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    letter-spacing: 0.24em;
+    color: var(--primary);
+    text-transform: uppercase;
+    font-weight: 600;
+    padding-right: 24px;
+    border-right: 1px solid color-mix(in srgb, var(--primary) 25%, transparent);
+    line-height: 1.35;
+  }
+  .dist-proof-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .dist-proof-stat b {
+    color: var(--text);
+    font-weight: 700;
+    font-size: 36px;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .dist-proof-stat-lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+  .dist-proof-dot { display: none; }
+  .dist-proof-flow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+  }
+
+  /* === Slide 9 · Content Engine (legacy, unused) === */
+  .s7-body {
+    display: grid;
+    grid-template-columns: 1fr 680px;
+    gap: 72px;
+    flex: 1;
+  }
+  .s7-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-right: 16px;
+  }
+  .s7-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  .s7-stat {
+    border-left: 2px solid rgba(162,140,252,0.5);
+    padding-left: 28px;
+  }
+  .s7-stat .n {
+    font-size: 88px;
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 1;
+    color: var(--text);
+  }
+  .s7-stat .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px;
+    letter-spacing: 0.14em;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    margin-top: 14px;
+  }
+  .s7-pipeline {
+    margin-top: 44px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: nowrap;
+  }
+  .s7-pipeline .step {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 20px;
+    letter-spacing: 0.18em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .s7-pipeline .arrow {
+    color: var(--text-muted);
+    font-size: 20px;
+  }
+  .s7-hero {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .s7-hero-video {
+    flex: 1;
+    background:
+      repeating-linear-gradient(135deg,
+        rgba(255,255,255,0.02) 0px,
+        rgba(255,255,255,0.02) 2px,
+        transparent 2px,
+        transparent 10px),
+      linear-gradient(180deg, rgba(162,140,252,0.08) 0%, rgba(10,11,13,1) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .s7-hero-video .placeholder-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px;
+    letter-spacing: 0.22em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.6;
+  }
+  .s7-hero-stats {
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 24px 28px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+  }
+  .s7-hero-stats .n {
+    font-size: 44px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+  .s7-hero-stats .lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px;
+    letter-spacing: 0.14em;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+  }
+  .s7-hero-stats .sep {
+    flex: 0 0 1px;
+    align-self: stretch;
+    background: var(--border);
+  }
+  .s7-caption {
+    position: absolute;
+    top: 22px; left: 22px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px;
+    letter-spacing: 0.14em;
+    color: var(--primary);
+    text-transform: uppercase;
+    padding: 10px 18px;
+    background: rgba(0,0,0,0.5);
+    border: 1px solid rgba(162,140,252,0.3);
+    border-radius: 999px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    white-space: nowrap;
+  }
+
+  /* === Slide 10 · Team === */
+  .team-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 28px;
+    margin-top: 56px;
+    margin-bottom: 56px;
+  }
+  .team-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 36px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .team-avatar {
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(162,140,252,0.4), rgba(162,140,252,0.08));
+    border: 1px solid rgba(162,140,252,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+    overflow: hidden;
+  }
+  .team-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .team-name {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  .team-role {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 20px;
+    letter-spacing: 0.18em;
+    color: var(--primary);
+    text-transform: uppercase;
+  }
+  .team-caps {
+    font-size: 22px;
+    color: var(--text-secondary);
+    font-weight: 400;
+    line-height: 1.4;
+  }
+  .backed-block {
+    border-top: 1px solid var(--border);
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+  }
+  .backed-head {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .backed-group {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 40px;
+    align-items: baseline;
+  }
+  .backed-group-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px;
+    letter-spacing: 0.22em;
+    color: var(--primary);
+    text-transform: uppercase;
+  }
+  .backed-names {
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  .backed-names .dot {
+    display: inline-block;
+    width: 5px; height: 5px;
+    background: var(--primary);
+    border-radius: 50%;
+    vertical-align: middle;
+    margin: 0 18px;
+    opacity: 0.7;
+  }
+  .backed-names .affil {
+    font-weight: 400;
+    color: var(--text-secondary);
+    font-size: 24px;
+    margin-left: 8px;
+  }
+
+  /* === Slide 11 · Ask === */
+  .s10 {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 100px;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg);
+  }
+  .s10-glow {
+    position: absolute;
+    width: 1200px; height: 1200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(162,140,252,0.18) 0%, rgba(162,140,252,0) 60%);
+    bottom: -300px; right: -200px;
+    filter: blur(60px);
+  }
+  .s10-wordmark {
+    position: absolute;
+    top: 56px; left: 100px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: 28px;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+  .s10-wordmark::before {
+    content: "";
+    display: inline-block;
+    width: 10px; height: 10px;
+    background: var(--primary);
+    border-radius: 50%;
+    margin-right: 14px;
+    vertical-align: middle;
+    box-shadow: 0 0 24px rgba(162,140,252,0.9);
+  }
+  .s10-tag {
+    position: absolute;
+    top: 56px; right: 100px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 24px;
+    letter-spacing: 0.22em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+  .s10-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 26px;
+    letter-spacing: 0.22em;
+    color: var(--primary);
+    text-transform: uppercase;
+    margin-bottom: 48px;
+    position: relative;
+    z-index: 2;
+  }
+  .s10-amount {
+    font-size: 320px;
+    font-weight: 800;
+    letter-spacing: -0.06em;
+    line-height: 0.9;
+    color: var(--text);
+    position: relative;
+    z-index: 2;
+  }
+  .s10-amount em {
+    font-style: normal;
+    color: var(--primary);
+  }
+  .s10-sub {
+    margin-top: 48px;
+    font-size: 40px;
+    line-height: 1.3;
+    color: var(--text-secondary);
+    font-weight: 400;
+    max-width: 1300px;
+    position: relative;
+    z-index: 2;
+  }
+  .s10-contact {
+    position: absolute;
+    bottom: 56px; left: 100px; right: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 24px;
+    letter-spacing: 0.18em;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+  }
+</style>
+
+<script type="application/json" id="speaker-notes">
+[
+  "Everything can be a market. That's the north star. Melee is the permissionless protocol that makes it possible — markets for every truth on a single parimutuel primitive. We're raising an eight million dollar seed. Quick one on the opportunity, then the mechanism, then the commercial unlock, then go-to-market, then the ask.",
+  "Here's the goal. Three requirements that no existing system satisfies simultaneously. One — anyone can create a market. Any topic, sports, politics, culture, memes, becomes a liquid tradeable market. No gatekeepers. No approval process. Two — bootstrap liquidity without market makers. New markets need to be tradeable immediately. Can't wait for MMs to post quotes. Liquidity must be protocol-native and automatic. Three — a competitive trading experience. Efficient pricing, tight execution, real-time position management. Must rival centralized platforms on UX and speed. Every prior mechanism solves two of these and breaks on the third.",
+  "Here's the mechanism. Curve-based parimutuel — we call it PMM, Parimutuel Market Maker. Every prior mechanism solves two of the four properties you need and breaks on the third. Parimutuels can cold-start but can't do continuous trading. Order books need market makers to exist. AMMs make LPs bleed. LMSR needs an operator subsidy. PMM is the first design that solves all four — continuous trading, permissionless cold-start, peer-to-peer economics with no LP bleed, and it preserves edge for early conviction. It's the first market maker designed specifically for assets that are guaranteed to expire. And cashouts are available throughout — no lock-in until resolution.",
+  "Prediction markets are having their YouTube moment. Before YouTube, video required networks and studios — a few thousand shows, curated by gatekeepers, aimed at mass audiences. After YouTube, anyone could publish, and the result wasn't more TV, it was a new category a thousand times the scale, shaped by creators and communities no network could ever serve. Prediction markets are there right now. Ten thousand markets today. Millions tomorrow. Polymarket and Kalshi are networks. Melee is the platform.",
+  "Three launches, one compounding thesis. Credibility first, users second, scale third. We're launching the PMM right now — the mechanism itself, academic validation, litepaper debuting at Solana Accelerate. That positions Melee as the serious mechanism innovation in the category. Next is Melee V1 — full platform, prediction markets on the PMM, vault-bootstrapped liquidity, creator-led expansion. That's where volume and fees ramp. And after that, the consumer app — mass-consumer mobile, mainstream users graduate into traders. Each launch feeds the next.",
+  "Here's why that mechanism matters commercially. There's a hundred billion dollars of DeFi capital sitting in yield strategies right now. Prediction markets have five hundred fifty million in TVL. A two-hundred-x gap. Prediction markets can't absorb that capital because every prior mechanism makes LPs lose. PMM is the first design where passive liquidity is profitable. Vaults earn yield. Markets get depth. Volume compounds. The flywheel prediction markets never had — and the foundation for markets beyond them.",
+  "Content is product at Melee. We've built an autonomous content engine — it scrapes culture, produces at scale, posts across platforms, measures what hits, refines what works. Live right now, running across all four ICPs. Best post pulled six hundred ten thousand views. Another hit two hundred thirty-two thousand. Hundreds of posts a day. The engine gets smarter every cycle. Here's the framing — the prediction markets category has a distribution problem, not a product problem. Melee is product and distribution, both built as infrastructure.",
+  "Small, senior team. Max — CEO, product and growth. Kai — CTO, full-stack. Nick — CRO, mechanism and quant. Kevin — CSO, smart contracts. Plus engineers, growth, and markets across the org. And we're already backed — Variant and DBA on the institutional side; Anatoly Yakovenko from Solana, Luca Netz from Pudgy Penguins, and Austin Federa, formerly of the Solana Foundation, as angels. The crypto-native social proof is in place.",
+  "Eight million dollar seed. To build the permissionless prediction market layer. Max at melee dot markets. Let's talk."
+]
+</script>
+</head>
+
+<body style="">
+
+<deck-stage width="1920" height="1080">
+
+  <!-- ======================= Slide 1 · North Star ======================= -->
+  <section data-label="North Star">
+    <div class="s1">
+      <div class="s1-glow"></div>
+      <div class="s1-wordmark">Melee</div>
+      <div class="s1-meta"></div>
+      <h1 class="headline" style=""><em style=""><font color="#ffffff">The people's prediction&nbsp;</font>market.</em></h1>
+      <p class="sub">
+</p>
+      <div class="s1-footer">
+        <span>melee.markets</span>
+        <span>01 / 12</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= Slide 2 · The Goal ======================= -->
+  <section data-label="The Goal">
+    <div class="frame">
+      <div class="corner-mark">02 — The Problem</div>
+      <h2 class="title"><span style="color:var(--primary)">Permissionless</span> PMs were impossible.</h2>
+      <p class="sub">No system could satisfy two core requirements.</p>
+
+      <div class="s3-goal-grid">
+        <div class="s3-goal-card">
+          <div class="s3-goal-num">01</div>
+          <div class="s3-goal-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5c-4 5-6.5 8.5-6.5 12a6.5 6.5 0 0 0 13 0c0-3.5-2.5-7-6.5-12z"></path></svg>
+          </div>
+          <div class="s3-goal-title">Bootstrap liquidity
+without MMs or subsidies.</div>
+          <div class="s3-goal-desc">New markets need to be tradeable immediately. Can't wait for MMs to post quotes or subsidize LPs.</div>
+          <div class="s3-goal-tag">COLD-START</div>
+        </div>
+        <div class="s3-goal-card primary">
+          <div class="s3-goal-num">02</div>
+          <div class="s3-goal-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"></path></svg>
+          </div>
+          <div class="s3-goal-title">Competitive trading<br>experience.</div>
+          <div class="s3-goal-desc">Efficient pricing, tight execution, and real-time position management. Must rival centralized platforms on UX.</div>
+          <div class="s3-goal-tag">CEX-GRADE UX</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= Slide 3 · Mechanism ======================= -->
+  <section data-label="Mechanism">
+    <div class="frame">
+      <div class="corner-mark">03 — The Mechanism</div>
+      <h2 class="title">Until the <span style="color:var(--primary)">Parimutuel Market Maker.</span></h2>
+      <p class="sub">Unlocked permissionless markets at scale.</p>
+
+      <div class="cmp">
+        <div class="hdr"></div>
+        <div class="hdr">Auto-<br>bootstrapping</div>
+        <div class="hdr">Tradeable</div>
+
+        <div class="rowlbl pmm-row">PMM</div>
+        <div class="val pmm-row">✓</div>
+        <div class="val pmm-row">✓</div>
+
+        <div class="rowlbl">AMM</div>
+        <div class="val bad">—</div>
+        <div class="val good">✓</div>
+
+        <div class="rowlbl">CLOB</div>
+        <div class="val bad">—</div>
+        <div class="val good">✓</div>
+
+        <div class="rowlbl">Parimutuel</div>
+        <div class="val good">✓</div>
+        <div class="val bad">—</div>
+      </div>
+
+      <div class="cmp-callout">PMM is the <b>first market maker designed for assets that are guaranteed to expire</b> — auto-bootstrapping and continuously tradeable.</div>
+      <div class="slide-footnote">Full mechanism · <a href="https://melee.markets/pmm">melee.markets/pmm</a></div>
+    </div>
+  </section>
+
+  <!-- ======================= Slide 4 · Product ======================= -->
+  <section data-label="Product">
+    <div class="frame">
+      <div class="corner-mark">04 — Product</div>
+      <h2 class="title">Prediction markets <span style="color:var(--primary)">on everything.</span></h2>
+      <p class="sub">Permissionless markets across every objective truth — created and traded by anyone, tradeable from day one.</p>
+
+      <div class="prod-body">
+        <div class="vertical primary">
+          <div class="vertical-tag">Prediction Markets</div>
+          <div class="vertical-name">Objective<br>truths.</div>
+          <div class="vertical-desc">Sports, politics, economics — the category Polymarket and Kalshi validated. PMM makes them permissionless and global.</div>
+          <div class="vertical-note">Validated category. New mechanism.</div>
+        </div>
+        <div class="prod-cats">
+          <div class="prod-cat">
+            <div class="prod-cat-name">Sports</div>
+            <div class="prod-cat-eg">Games, matchups, player props, season outcomes.</div>
+          </div>
+          <div class="prod-cat">
+            <div class="prod-cat-name">Politics</div>
+            <div class="prod-cat-eg">Elections, policy, geopolitical events.</div>
+          </div>
+          <div class="prod-cat">
+            <div class="prod-cat-name">Economics</div>
+            <div class="prod-cat-eg">Rates, inflation prints, macro releases.</div>
+          </div>
+          <div class="prod-cat">
+            <div class="prod-cat-name">Crypto</div>
+            <div class="prod-cat-eg">Price levels, launches, on-chain milestones.</div>
+          </div>
+          <div class="prod-cat">
+            <div class="prod-cat-name">Culture</div>
+            <div class="prod-cat-eg">Awards, releases, box office, charts.</div>
+          </div>
+          <div class="prod-cat">
+            <div class="prod-cat-name">Breaking news</div>
+            <div class="prod-cat-eg">Any event, spun up the moment it happens.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= Slide 5 · YouTube Moment ======================= -->
+  <section data-label="YouTube Moment">
+    <div class="frame">
+      <div class="corner-mark">05 — Opportunity</div>
+      <h2 class="title">Prediction markets' <span style="color:var(--primary)">YouTube moment.</span></h2>
+      <p class="sub">Every category that goes permissionless grows <b style="color:var(--text)">1,000×</b>. Prediction markets are next.</p>
+
+      <div class="s2-body">
+        <div class="s2-analogy">
+          <div class="s2-col before">
+            <div class="s2-col-label">Before YouTube · 1995</div>
+            <div class="s2-col-stat">10,000 <span class="s2-col-stat-u">shows</span></div>
+            <div class="s2-col-body">Video required networks and studios. Gatekeepers picked the content. Content chased mass audiences.</div>
+          </div>
+          <div class="s2-col after">
+            <div class="s2-col-label">After YouTube · 2025</div>
+            <div class="s2-col-stat">Millions <span class="s2-col-stat-u">of creators</span></div>
+            <div class="s2-col-body">The result wasn't more TV. It was a new category, shaped by creators and communities no network could serve.</div>
+          </div>
+        </div>
+
+        <div class="s2-verdict">
+          <div class="v-side">
+            <div class="v-lbl">Today</div>
+            <div class="before">Polymarket and Kalshi are networks.</div>
+          </div>
+          <div class="v-arrow"></div>
+          <div class="v-side after">
+            <div class="v-lbl">Melee</div>
+            <div class="after-txt">The <b>platform.</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= Slide 6 · Creator Flywheel ======================= -->
+  <section data-label="Creator Flywheel">
+    <div class="frame">
+      <div class="corner-mark">06 — Creator Flywheel</div>
+      <h2 class="title">Creators do what <span style="color:var(--primary)">curators can't.</span></h2>
+      <p class="sub">Polymarket and Kalshi hand-curate every market from a single office. We don't.</p>
+
+      <div class="cfw2">
+
+        <!-- Hero: the scale claim as the visual -->
+        <div class="cfw2-hero">
+          <div class="cfw2-claim cfw2-them">
+            <div class="cfw2-who">Polymarket · Kalshi</div>
+            <div class="cfw2-line">
+              <span class="cfw2-verb">Scales with</span>
+              <span class="cfw2-what">the team.</span>
+            </div>
+            <div class="cfw2-dots" aria-hidden="true">
+              <!-- 50 employee dots -->
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+          <div class="cfw2-claim cfw2-us">
+            <div class="cfw2-who">Melee</div>
+            <div class="cfw2-line">
+              <span class="cfw2-verb">Scales with</span>
+              <span class="cfw2-what">the internet.</span>
+            </div>
+            <div class="cfw2-dots cfw2-dots-us" aria-hidden="true">
+              <!-- dense field, ~400 dots -->
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Evidence row: 3 proof points -->
+        <div class="cfw2-evidence">
+          <div class="cfw2-proof">
+            <div class="cfw2-proof-k">Who launches the markets</div>
+            <div class="cfw2-proof-v">Creators. In their language, geography, and community.</div>
+          </div>
+          <div class="cfw2-proof">
+            <div class="cfw2-proof-k">Who earns the fees</div>
+            <div class="cfw2-proof-v">Whoever brings the audience. Direct revenue share + referrals.</div>
+          </div>
+          <div class="cfw2-proof">
+            <div class="cfw2-proof-k">Why it compounds</div>
+            <div class="cfw2-proof-v">Every creator adds markets HQ teams can't author — Brazilian politics, EPL football, weather hedges.</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================= Slide 7 · Competitive ======================= -->
+  <section data-label="Competitive">
+    <div class="frame">
+      <div class="corner-mark">07 — Competitive</div>
+      <h2 class="title">The permissionless <span style="color:var(--primary)">advantage.</span></h2>
+      <p class="sub">Polymarket and Kalshi are curated networks. Melee is the permissionless layer beneath all truth.</p>
+
+      <div class="comp">
+        <div></div>
+        <div class="comp-hdr is-melee">
+          <div class="comp-hdr-co">Melee</div>
+          <div class="comp-hdr-role">Permissionless layer</div>
+        </div>
+        <div class="comp-hdr">
+          <div class="comp-hdr-co">Polymarket</div>
+          <div class="comp-hdr-role">Curated · global</div>
+        </div>
+        <div class="comp-hdr">
+          <div class="comp-hdr-co">Kalshi</div>
+          <div class="comp-hdr-role">Curated · US</div>
+        </div>
+
+        <div class="comp-rowlbl">Markets</div>
+        <div class="comp-cell is-melee"><b>Creator markets</b></div>
+        <div class="comp-cell">Curated markets</div>
+        <div class="comp-cell">Curated markets</div>
+
+        <div class="comp-rowlbl">Distribution</div>
+        <div class="comp-cell is-melee"><b>International</b></div>
+        <div class="comp-cell">International</div>
+        <div class="comp-cell">US only</div>
+
+        <div class="comp-rowlbl">Liquidity</div>
+        <div class="comp-cell is-melee"><b>Passive liquidity</b></div>
+        <div class="comp-cell">Market makers</div>
+        <div class="comp-cell">Market makers</div>
+
+        <div class="comp-rowlbl">Payouts</div>
+        <div class="comp-cell is-melee"><b>Uncapped upside</b><br><span style="color:var(--text-muted);font-size:17px;">Ratchets with volatility</span></div>
+        <div class="comp-cell">Fixed at entry</div>
+        <div class="comp-cell">Fixed at entry</div>
+
+      </div>
+
+      <div class="comp-callout-wrap">
+        <div class="comp-callout-lbl">The take</div>
+        <div class="comp-callout-body">Incumbents optimized for curated markets. Melee optimizes for <b>access, liquidity, and payouts</b> — the three things permissionless growth requires.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= Slide 9 · G2M (Sequencing) ======================= -->
+  <section data-label="Passive Capital">
+    <div class="frame s3b">
+      <div class="corner-mark">08 — The Unlock</div>
+      <h2 class="title">Unlocking <span style="color:var(--primary)">$100B of DeFi liquidity.</span></h2>
+      <p class="sub">Creating a baseline of liquidity for all markets with the first profitable prediction market-maker.</p>
+
+      <div class="s3b-body">
+        <div class="s3b-copy">
+          <p>Prediction markets can't absorb DeFi capital today.</p>
+          <p>PMM is the first design where <b>passive liquidity is profitable.</b> Vaults earn. Markets get depth. Volume compounds.</p>
+          <div class="s3b-flywheel">
+            <div class="s3b-flywheel-lbl">The Flywheel</div>
+            <div class="s3b-flywheel-body">Vault yield → depth → volume → fees → vault yield</div>
+          </div>
+        </div>
+
+        <div class="s3b-chart">
+          <div class="s3b-chart-title">Addressable Capital · TVL</div>
+
+          <div class="s3b-compare">
+            <div class="s3b-row s3b-row-big">
+              <div class="s3b-row-num">$100B</div>
+              <div class="s3b-row-bar"><div class="s3b-row-fill" style="width:100%"></div></div>
+              <div class="s3b-row-lbl">
+                <div class="s3b-row-lbl-name">DeFi yield</div>
+                <div class="s3b-row-lbl-sub">Capital looking for real yield today</div>
+              </div>
+            </div>
+            <div class="s3b-row s3b-row-small">
+              <div class="s3b-row-num">$550M</div>
+              <div class="s3b-row-bar"><div class="s3b-row-fill primary" style="width:0.55%"></div></div>
+              <div class="s3b-row-lbl">
+                <div class="s3b-row-lbl-name primary">Prediction markets</div>
+                <div class="s3b-row-lbl-sub">&lt;0.6% of DeFi yield capital · today's TVL ceiling</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="s3b-gap-new">
+            <div class="s3b-gap-n">200×</div>
+            <div class="s3b-gap-lbl">addressable gap<br>unlocked by PMM vaults</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= Slide 8 · Passive Capital ======================= -->
+  <section data-label="G2M">
+    <div class="frame">
+      <div class="corner-mark">09 — G2M</div>
+      <h2 class="title">One wedge. <span style="color:var(--primary)">One expansion path.</span></h2>
+      <p class="sub">Land crypto-native traders where the behavior already exists, then expand into high-frequency consumer markets — and open the platform underneath.</p>
+
+      <div class="gtm" id="gtm-track">
+        <div class="gtm-phase is-now" id="gtm-wedge">
+          <div class="gtm-node"></div>
+          <div class="gtm-label">Wedge</div>
+          <div class="gtm-name">Crypto price markets</div>
+          <ul class="gtm-points">
+            <li>Frequent, objective, rapidly resolving</li>
+            <li>Existing on-chain traders</li>
+            <li>Repeatable liquidity &amp; retention testing</li>
+          </ul>
+          <div class="gtm-kgt">
+            <div class="gtm-kgt-kicker">Baseline liquidity</div>
+            <div class="gtm-kgt-name">DeFi vaults</div>
+            <div class="gtm-kgt-desc">Passive deposits seed depth in every market from day one.</div>
+          </div>
+        </div>
+
+        <div class="gtm-phase" id="gtm-expansion">
+          <div class="gtm-node"></div>
+          <div class="gtm-label">Expansion</div>
+          <div class="gtm-name">High-frequency consumer markets</div>
+          <ul class="gtm-points">
+            <li>Sports, culture &amp; breaking news</li>
+            <li>Creators &amp; affiliates bring audiences</li>
+          </ul>
+          <div class="gtm-kgt">
+            <div class="gtm-kgt-kicker">Low-friction creation</div>
+            <div class="gtm-kgt-name">Market templates</div>
+            <div class="gtm-kgt-desc">Templates reduce creation and resolution friction.</div>
+          </div>
+        </div>
+
+        <div class="gtm-phase" id="gtm-platform">
+          <div class="gtm-node"></div>
+          <div class="gtm-label">Platform</div>
+          <div class="gtm-name">Open protocol</div>
+          <ul class="gtm-points">
+            <li>Permissionless creation</li>
+            <li>API integrations</li>
+            <li>Regional &amp; long-tail markets</li>
+          </ul>
+          <div class="gtm-kgt">
+            <div class="gtm-kgt-kicker">Compounding moat</div>
+            <div class="gtm-kgt-name">Shared liquidity layer</div>
+            <div class="gtm-kgt-desc">Every new market and integration deepens the same vault-backed liquidity.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= Slide 10 · Distribution ======================= -->
+  <section data-label="Distribution">
+    <div class="frame">
+      <div class="corner-mark">10 — Distribution</div>
+      <h2 class="title">Distribution compounds with <span style="color:var(--primary)">every market.</span></h2>
+      <p class="sub">Melee pairs high-intent trader onboarding with an autonomous engine that can spin up attention for any vertical.</p>
+
+      <div class="dist-body">
+        <div class="dist-stages">
+          <div class="dist-stage">
+            <div class="dist-stage-num">01</div>
+            <div class="dist-stage-name">Direct onboarding</div>
+            <div class="dist-stage-body">Direct onboarding for traders, funds, and LPs.</div>
+            <div class="dist-stage-aud">Audience · Traders, funds, LPs</div>
+          </div>
+
+          <div class="dist-stage">
+            <div class="dist-stage-num">02</div>
+            <div class="dist-stage-name">Referral Programs</div>
+            <div class="dist-stage-body">Targeted referral incentive programs and creator-led socials.</div>
+            <div class="dist-stage-aud">Audience · PM-traders, bettors</div>
+          </div>
+
+          <div class="dist-stage">
+            <div class="dist-stage-num">03</div>
+            <div class="dist-stage-name">Autonomous content</div>
+            <div class="dist-stage-body">Autonomous content engine producing hundreds of posts/day across cultural verticals.</div>
+            <div class="dist-stage-aud">Audience · Mass consumer</div>
+          </div>
+        </div>
+
+        <div class="dist-proof">
+          <span class="dist-proof-tag">Already<br>live</span>
+          <span class="dist-proof-stat"><b>4.5M</b><span class="dist-proof-stat-lbl">Top post</span></span>
+          <span class="dist-proof-stat"><b>100 M+</b><span class="dist-proof-stat-lbl">Cumulative views</span></span>
+          <span class="dist-proof-stat"><b>100s</b><span class="dist-proof-stat-lbl">Posts / day</span></span>
+        </div>
+        </div>
+      </div>
+    
+  </section>
+
+  <!-- ======================= Slide 11 · Team ======================= -->
+  <section data-label="Team">
+    <div class="frame">
+      <div class="corner-mark">11 — Team</div>
+      <h2 class="title">Built <span style="color:var(--primary)">for this problem.</span></h2>
+
+      <div class="team-row">
+        <div class="team-card">
+          <div class="team-avatar"><img src="assets/team-max.jpeg" alt="Max"></div>
+          <div class="team-name">Max</div>
+          <div class="team-role">CEO</div>
+          <div class="team-caps">Product &amp; growth</div>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar"><img src="assets/team-kai.jpeg" alt="Kai"></div>
+          <div class="team-name">Kai</div>
+          <div class="team-role">CTO</div>
+          <div class="team-caps">Full-stack</div>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar"><img src="assets/team-kevin.jpeg" alt="Kevin"></div>
+          <div class="team-name">Kevin</div>
+          <div class="team-role">CSO</div>
+          <div class="team-caps">Mechanism &amp; smart contracts</div>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar"><img src="assets/team-nick.jpg" alt="Nick"></div>
+          <div class="team-name">Nick</div>
+          <div class="team-role">CRO</div>
+          <div class="team-caps">Mechanism &amp; quant</div>
+        </div>
+      </div>
+
+      <div class="backed-block">
+        <div class="backed-head">Already backed by</div>
+        <div class="backed-group">
+          <div class="backed-group-label">Institutional</div>
+          <div class="backed-names">Variant<span class="dot"></span>DBA</div>
+        </div>
+        <div class="backed-group">
+          <div class="backed-group-label">Angels</div>
+          <div class="backed-names">
+            Anatoly Yakovenko <span class="affil">(Solana)</span><span class="dot"></span>
+            Luca Netz <span class="affil">(Pudgy Penguins)</span><span class="dot"></span>
+            Andrew Kang <span class="affil">(Mechanism Capital)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= Slide 12 · Ask ======================= -->
+  <section data-label="Ask">
+    <div class="s10">
+      <div class="s10-glow"></div>
+      <div class="s10-wordmark">Melee</div>
+      <div class="s10-tag">12 / 12 — Ask</div>
+
+      <div class="s10-label">The Ask</div>
+      <div class="s10-amount"><em>$10M</em> seed.</div>
+      <div class="s10-sub">To build the permissionless prediction market layer.</div>
+
+      <div class="s10-contact">
+        <span>max@melee.markets</span>
+        <span>Let's talk.</span>
+      </div>
+    </div>
+  </section>
+
+</deck-stage>
+
+<div id="tweak-mount"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel">
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "activeStage": "platform",
+    "progressionLine": true,
+    "growthTactics": true
+  }/*EDITMODE-END*/;
+
+  function DeckTweaks() {
+    const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+
+    React.useEffect(() => {
+      const map = { wedge: 'gtm-wedge', expansion: 'gtm-expansion', platform: 'gtm-platform' };
+      Object.values(map).forEach((id) => document.getElementById(id)?.classList.remove('is-now'));
+      document.getElementById(map[t.activeStage])?.classList.add('is-now');
+      const track = document.getElementById('gtm-track');
+      if (track) {
+        track.classList.toggle('no-line', !t.progressionLine);
+        track.classList.toggle('no-kgt', !t.growthTactics);
+      }
+    }, [t.activeStage, t.progressionLine, t.growthTactics]);
+
+    return (
+      <TweaksPanel>
+        <TweakSection label="Go-to-market" />
+        <TweakRadio label="Active stage" value={t.activeStage}
+                    options={['wedge', 'expansion', 'platform']}
+                    onChange={(v) => setTweak('activeStage', v)} />
+        <TweakToggle label="Progression line" value={t.progressionLine}
+                     onChange={(v) => setTweak('progressionLine', v)} />
+        <TweakToggle label="Growth tactics" value={t.growthTactics}
+                     onChange={(v) => setTweak('growthTactics', v)} />
+      </TweaksPanel>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('tweak-mount')).render(<DeckTweaks />);
+</script>
+
+</body></html>
