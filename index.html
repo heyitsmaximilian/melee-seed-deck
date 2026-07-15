@@ -158,15 +158,10 @@
     letter-spacing: -0.02em;
     color: var(--text);
   }
-  .s1-wordmark::before {
-    content: "";
-    display: inline-block;
-    width: 24px; height: 24px;
-    background: var(--primary);
-    -webkit-mask: url(assets/melee-mark.svg) center / contain no-repeat;
-    mask: url(assets/melee-mark.svg) center / contain no-repeat;
-    margin-right: 13px;
-    vertical-align: -4px;
+  .s1-wordmark img {
+    display: block;
+    height: 28px;
+    width: auto;
   }
   .s1-meta {
     position: absolute;
@@ -1345,15 +1340,10 @@
     letter-spacing: -0.02em;
     color: var(--text);
   }
-  .s10-wordmark::before {
-    content: "";
-    display: inline-block;
-    width: 24px; height: 24px;
-    background: var(--primary);
-    -webkit-mask: url(assets/melee-mark.svg) center / contain no-repeat;
-    mask: url(assets/melee-mark.svg) center / contain no-repeat;
-    margin-right: 13px;
-    vertical-align: -4px;
+  .s10-wordmark img {
+    display: block;
+    height: 28px;
+    width: auto;
   }
   .s10-tag {
     position: absolute;
@@ -1421,7 +1411,7 @@
   <section data-label="North Star">
     <div class="s1">
       <div class="s1-glow"></div>
-      <div class="s1-wordmark">Melee</div>
+      <div class="s1-wordmark"><img src="assets/melee-lockup.svg" alt="Melee"></div>
       <div class="s1-meta"></div>
       <h1 class="headline">The people's prediction&nbsp;<em>market.</em></h1>
       <p class="sub">The permissionless prediction market platform.</p>
@@ -1683,7 +1673,7 @@ without MMs or subsidies.</div>
       <div class="s3b-body">
         <div class="s3b-copy">
           <p>Prediction markets can't absorb DeFi capital today.</p>
-          <p>PMM is the first design where <b>passive liquidity is profitable.</b> Vaults earn. Markets get depth. Volume compounds.</p>
+          <p>The PMM is the first design where <b>passive liquidity is profitable.</b> Vaults earn. Markets get depth. Liquidity compounds.</p>
           <div class="s3b-flywheel">
             <div class="s3b-flywheel-lbl">The Flywheel</div>
             <div class="s3b-flywheel-body">Vault yield → depth → volume → fees → vault yield</div>
@@ -1725,54 +1715,53 @@ without MMs or subsidies.</div>
   <section data-label="G2M">
     <div class="frame">
       <div class="corner-mark">09 — G2M</div>
-      <h2 class="title">One wedge. <span style="color:var(--primary)">One expansion path.</span></h2>
-      <p class="sub">Land crypto-native traders where the behavior already exists, then expand into high-frequency consumer markets — and open the platform underneath.</p>
+      <h2 class="title">Win crypto first. <span style="color:var(--primary)">Then every market.</span></h2>
+      <p class="sub">Crypto traders are already on-chain, and every round settles on price. The same rails carry every market after.</p>
 
       <div class="gtm" id="gtm-track">
         <div class="gtm-phase is-now" id="gtm-wedge">
           <div class="gtm-node"></div>
-          <div class="gtm-label">Wedge</div>
+          <div class="gtm-label">Now</div>
           <div class="gtm-name">Crypto price markets</div>
           <ul class="gtm-points">
-            <li>Frequent, objective, rapidly resolving</li>
-            <li>Existing on-chain traders</li>
-            <li>Repeatable liquidity &amp; retention testing</li>
+            <li>Hourly BTC up-or-down, settled on price.</li>
+            <li>The traders are already here, already on-chain.</li>
+            <li>Proves liquidity and retention on the hardest vertical.</li>
           </ul>
           <div class="gtm-kgt">
             <div class="gtm-kgt-kicker">Baseline liquidity</div>
             <div class="gtm-kgt-name">DeFi vaults</div>
-            <div class="gtm-kgt-desc">Passive deposits seed depth in every market from day one.</div>
+            <div class="gtm-kgt-desc">Passive deposits seed depth from second one.</div>
           </div>
         </div>
 
         <div class="gtm-phase" id="gtm-expansion">
           <div class="gtm-node"></div>
-          <div class="gtm-label">Expansion</div>
-          <div class="gtm-name">High-frequency consumer markets</div>
+          <div class="gtm-label">Next</div>
+          <div class="gtm-name">Consumer markets</div>
           <ul class="gtm-points">
-            <li>Sports, culture &amp; breaking news</li>
-            <li>Creators &amp; affiliates bring audiences</li>
+            <li>Sports, culture, breaking news — where the volume is.</li>
+            <li>Creators bring the crowd and earn the fees.</li>
           </ul>
           <div class="gtm-kgt">
             <div class="gtm-kgt-kicker">Low-friction creation</div>
             <div class="gtm-kgt-name">Market templates</div>
-            <div class="gtm-kgt-desc">Templates reduce creation and resolution friction.</div>
+            <div class="gtm-kgt-desc">Launch in seconds, resolve automatically.</div>
           </div>
         </div>
 
         <div class="gtm-phase" id="gtm-platform">
           <div class="gtm-node"></div>
-          <div class="gtm-label">Platform</div>
+          <div class="gtm-label">Then</div>
           <div class="gtm-name">Open protocol</div>
           <ul class="gtm-points">
-            <li>Permissionless creation</li>
-            <li>API integrations</li>
-            <li>Regional &amp; long-tail markets</li>
+            <li>Anyone lists any market, by API or app.</li>
+            <li>Every new market deepens the same liquidity.</li>
           </ul>
           <div class="gtm-kgt">
             <div class="gtm-kgt-kicker">Compounding moat</div>
-            <div class="gtm-kgt-name">Shared liquidity layer</div>
-            <div class="gtm-kgt-desc">Every new market and integration deepens the same vault-backed liquidity.</div>
+            <div class="gtm-kgt-name">Shared liquidity</div>
+            <div class="gtm-kgt-desc">One pool deepens behind every market.</div>
           </div>
         </div>
       </div>
@@ -1876,7 +1865,7 @@ without MMs or subsidies.</div>
   <section data-label="Ask">
     <div class="s10">
       <div class="s10-glow"></div>
-      <div class="s10-wordmark">Melee</div>
+      <div class="s10-wordmark"><img src="assets/melee-lockup.svg" alt="Melee"></div>
       <div class="s10-tag">12 / 12 — Ask</div>
 
       <div class="s10-label">The Ask</div>
@@ -1899,7 +1888,7 @@ without MMs or subsidies.</div>
 <script type="text/babel" src="tweaks-panel.jsx"></script>
 <script type="text/babel">
   const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-    "activeStage": "platform",
+    "activeStage": "wedge",
     "progressionLine": true,
     "growthTactics": true
   }/*EDITMODE-END*/;
@@ -1956,4 +1945,6 @@ without MMs or subsidies.</div>
 
 
 
-<!-- deploy 1784108966 -->
+
+
+<!-- deploy 1784109485 -->
