@@ -447,67 +447,113 @@
     flex-direction: column;
     margin-top: 16px;
   }
-  .opp-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 56px;
+  /* === Slide 8 · The Market (long-tail chart) === */
+  .mkt-chart {
+    position: relative;
     flex: 1;
-    align-content: center;
-    padding-top: 40px;
+    min-height: 0;
+    margin-top: 12px;
   }
-  .opp-stat {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding-left: 28px;
-    border-left: 1px solid var(--border);
+  .mkt-chart svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
   }
-  .opp-stat.is-melee { border-left-color: var(--primary); }
-  .opp-lbl {
+  .mkt-kicker {
     font-family: var(--font-mono);
-    font-size: 16px;
-    letter-spacing: 0.24em;
+    font-size: 14px;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--text-muted);
     font-weight: 500;
   }
-  .opp-stat.is-melee .opp-lbl { color: var(--primary); }
-  .opp-n {
-    font-family: var(--font-numeral);
-    font-size: 80px;
+  .mkt-ceiling {
+    position: absolute;
+    left: calc(17.5% + 16px);
+    top: 2%;
+    color: var(--text-muted);
+  }
+  .mkt-head-note {
+    position: absolute;
+    left: 1.4%;
+    top: 58%;
+    width: 13.5%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .mkt-head-note .mkt-kicker { color: var(--text-muted); }
+  .mkt-head-note p {
+    margin: 0;
+    font-size: 19px;
+    line-height: 1.45;
+    color: var(--text-secondary);
+  }
+  .mkt-tail-note {
+    position: absolute;
+    left: 36%;
+    top: 9%;
+    width: 56%;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .mkt-tail-note .mkt-kicker { color: var(--primary); }
+  .mkt-tail-h {
+    font-family: var(--font-display);
+    font-size: 58px;
     font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 0.9;
+    letter-spacing: -0.035em;
+    line-height: 1.02;
     color: var(--text);
   }
-  .opp-stat.is-melee .opp-n { color: var(--primary); }
-  .opp-n span {
-    font-family: var(--font-body);
-    font-size: 28px;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    color: var(--text-muted);
-    margin-left: 4px;
-  }
-  .opp-d {
+  .mkt-tail-note p {
+    margin: 0;
     font-size: 22px;
     line-height: 1.5;
     color: var(--text-secondary);
-    font-weight: 400;
-    letter-spacing: -0.005em;
+    max-width: 660px;
     text-wrap: pretty;
   }
-  .opp-foot {
-    margin-top: 44px;
-    padding-top: 32px;
+  .mkt-strip {
+    margin-top: 26px;
+    padding-top: 26px;
     border-top: 1px solid var(--border);
-    font-size: 26px;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    color: var(--text-secondary);
-    line-height: 1.35;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
   }
-  .opp-foot b { color: var(--primary); font-weight: 700; }
+  .mkt-stat {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+  }
+  .mkt-n {
+    font-family: var(--font-numeral);
+    font-size: 46px;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: var(--text);
+    white-space: nowrap;
+  }
+  .mkt-n span {
+    font-family: var(--font-body);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-left: 2px;
+  }
+  .mkt-stat.is-melee .mkt-n { color: var(--primary); }
+  .mkt-l {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 500;
+    line-height: 1.6;
+    white-space: nowrap;
+  }
 
   .s2-analogy {
     display: grid;
@@ -1571,7 +1617,7 @@ without MMs or subsidies.</div>
           <div class="s2-col after">
             <div class="s2-col-label">After YouTube · Today</div>
             <div class="s2-col-stat">Millions <span class="s2-col-stat-u">of creators</span></div>
-            <div class="s2-col-body">The result wasn't more TV. It was a new category, shaped by creators and communities no network could serve.</div>
+            <div class="s2-col-body">The result wasn't more TV. It was a new global category, shaped by creators and communities no network could serve.</div>
           </div>
         </div>
 
@@ -1590,40 +1636,10 @@ without MMs or subsidies.</div>
     </div>
   </section>
 
-  <!-- ======================= Slide 6 · The Market (size) ======================= -->
-  <section data-label="The Market">
-    <div class="frame">
-      <div class="corner-mark">06 — The Market</div>
-      <h2 class="title">Bigger than <span style="color:var(--primary)">betting.</span></h2>
-      <p class="sub">Prediction markets are eating global gambling with a fraction of the vig — and the real market is every truth beyond it.</p>
-
-      <div class="s2-body">
-        <div class="opp-row">
-          <div class="opp-stat">
-            <div class="opp-lbl">The prize</div>
-            <div class="opp-n">$655B<span>/yr</span></div>
-            <div class="opp-d">Global gambling today. Add speculation, culture, and opinion — every truth on earth becomes a market.</div>
-          </div>
-          <div class="opp-stat">
-            <div class="opp-lbl">Already moving</div>
-            <div class="opp-n">$45B<span>/mo</span></div>
-            <div class="opp-d">Category volume, up 9× in 9 months. Kalshi alone went from $25M to $2B in revenue.</div>
-          </div>
-          <div class="opp-stat is-melee">
-            <div class="opp-lbl">Melee's take</div>
-            <div class="opp-n">2%</div>
-            <div class="opp-d">Protocol fee on every trade — half shared with the creators who bring the markets.</div>
-          </div>
-        </div>
-        <div class="opp-foot">Curated incumbents are capped at what one team can list. <b>Permissionless has no ceiling.</b></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ======================= Slide 7 · Creator Flywheel ======================= -->
+  <!-- ======================= Slide 6 · Creator Flywheel ======================= -->
   <section data-label="Creator Flywheel">
     <div class="frame">
-      <div class="corner-mark">07 — Creator Flywheel</div>
+      <div class="corner-mark">06 — Creator Flywheel</div>
       <h2 class="title">Creators do what <span style="color:var(--primary)">curators can't.</span></h2>
       <p class="sub">Polymarket and Kalshi hand-curate every market. Melee creates a platform for global scale.</p>
 
@@ -1683,7 +1699,7 @@ without MMs or subsidies.</div>
   <!-- ======================= Slide 7 · Competitive ======================= -->
   <section data-label="Competitive">
     <div class="frame">
-      <div class="corner-mark">08 — Competitive</div>
+      <div class="corner-mark">07 — Competitive</div>
       <h2 class="title">The permissionless <span style="color:var(--primary)">advantage.</span></h2>
       <p class="sub">Polymarket and Kalshi are curated networks. Melee is the permissionless layer beneath all truth.</p>
 
@@ -1727,6 +1743,64 @@ without MMs or subsidies.</div>
       <div class="comp-callout-wrap">
         <div class="comp-callout-lbl">Key idea</div>
         <div class="comp-callout-body">Incumbents can't open market creation: <b>an order book without a market maker is a dead market.</b> They list what desks will quote. PMM markets trade from the first dollar.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= Slide 8 · The Market (long tail) ======================= -->
+  <section data-label="The Market">
+    <div class="frame">
+      <div class="corner-mark">08 — The Market</div>
+      <h2 class="title">Bigger than <span style="color:var(--primary)">betting.</span></h2>
+      <p class="sub">Curated networks compete for the head of the market. A permissionless platform monetizes the entire curve.</p>
+
+      <div class="mkt-chart">
+        <svg viewBox="0 0 1600 520" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="mktHeadFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#ffffff" stop-opacity="0.12"/>
+              <stop offset="1" stop-color="#ffffff" stop-opacity="0.02"/>
+            </linearGradient>
+            <linearGradient id="mktTailFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" style="stop-color: var(--primary)" stop-opacity="0.30"/>
+              <stop offset="1" style="stop-color: var(--primary)" stop-opacity="0.02"/>
+            </linearGradient>
+            <clipPath id="mktClipHead"><rect x="0" y="0" width="280" height="520"/></clipPath>
+            <clipPath id="mktClipTail"><rect x="280" y="0" width="1320" height="520"/></clipPath>
+          </defs>
+          <path d="M 0 64 C 90 84, 180 176, 280 288 C 380 400, 560 428, 760 448 C 1000 468, 1300 478, 1600 486 L 1600 520 L 0 520 Z" fill="url(#mktHeadFill)" clip-path="url(#mktClipHead)"/>
+          <path d="M 0 64 C 90 84, 180 176, 280 288 C 380 400, 560 428, 760 448 C 1000 468, 1300 478, 1600 486 L 1600 520 L 0 520 Z" fill="url(#mktTailFill)" clip-path="url(#mktClipTail)"/>
+          <path d="M 0 64 C 90 84, 180 176, 280 288 C 380 400, 560 428, 760 448 C 1000 468, 1300 478, 1600 486" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="3" clip-path="url(#mktClipHead)"/>
+          <path d="M 0 64 C 90 84, 180 176, 280 288 C 380 400, 560 428, 760 448 C 1000 468, 1300 478, 1600 486" fill="none" style="stroke: var(--primary)" stroke-width="3" clip-path="url(#mktClipTail)"/>
+          <line x1="280" y1="30" x2="280" y2="520" stroke="rgba(255,255,255,0.22)" stroke-width="1.5" stroke-dasharray="3 8"/>
+          <circle cx="280" cy="288" r="14" style="fill: var(--primary)" opacity="0.25"/>
+          <circle cx="280" cy="288" r="7" style="fill: var(--primary)"/>
+        </svg>
+        <div class="mkt-ceiling mkt-kicker">Curation ceiling</div>
+        <div class="mkt-head-note">
+          <div class="mkt-kicker">The head · curated</div>
+          <p>What two teams can list. $45B a month today.</p>
+        </div>
+        <div class="mkt-tail-note">
+          <div class="mkt-kicker">The long tail · platform only</div>
+          <div class="mkt-tail-h">Every truth, in every language.</div>
+          <p>Regional sport, local politics, culture, finance — demand scattered across thousands of venues no curator can list. Platforms consolidate it.</p>
+        </div>
+      </div>
+
+      <div class="mkt-strip">
+        <div class="mkt-stat">
+          <div class="mkt-n">$45B<span>/mo</span></div>
+          <div class="mkt-l">PM volume · up 9× in 9 months</div>
+        </div>
+        <div class="mkt-stat">
+          <div class="mkt-n">$655B<span>/yr</span></div>
+          <div class="mkt-l">Global betting across the tail</div>
+        </div>
+        <div class="mkt-stat is-melee">
+          <div class="mkt-n">2%</div>
+          <div class="mkt-l">Melee's take on every trade</div>
+        </div>
       </div>
     </div>
   </section>
@@ -2025,4 +2099,6 @@ without MMs or subsidies.</div>
 
 
 
-<!-- deploy 1784140584 -->
+
+
+<!-- deploy 1784141176 -->
