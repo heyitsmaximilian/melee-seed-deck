@@ -5,14 +5,14 @@
 <title>Melee — Seed Deck</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Dela+Gotic+One&amp;family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Space+Mono:wght@400;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
 <script src="deck-stage.js"></script>
 <style>
   /* ============================================================
      THEME A — GRAPHITE (dark, default). Matches /v1 markets UI.
      ============================================================ */
   :root {
-    --bg: #0a0b0d;
+    --bg: #0c0d10;
     --bg-card: #0f1013;
     --bg-card-hover: #151619;
     --primary: #a28cfc;
@@ -29,9 +29,16 @@
     --border: rgba(255,255,255,0.06);
     --border-hover: rgba(255,255,255,0.12);
 
-    --font-display: 'Inter', sans-serif;
-    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    /* /beta hub: display and body are the SAME face — hierarchy from size/weight/tracking. */
+    --font-display: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+    /* /beta hub ambient field — deep editorial purple blooms (resting state). */
+    --field:
+      radial-gradient(80% 60% at 78% -8%, rgba(116,80,236,0.30), transparent 62%),
+      radial-gradient(60% 50% at 8% 96%, rgba(116,80,236,0.15), transparent 55%);
+    --grain: radial-gradient(rgba(162,140,252,0.4) 0.9px, transparent 1px);
 
     --r-control: 10px;
     --r-card: 14px;
@@ -39,21 +46,38 @@
 
     --elev-1: 0 1px 2px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06);
     --elev-2: 0 1px 2px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06), 0 12px 32px -16px rgba(var(--primary-rgb),0.18);
-    --card-shadow: 0 1px 2px rgba(0,0,0,0.4), 0 10px 30px -14px rgba(0,0,0,0.55);
-    --font-numeral: 'Dela Gotic One', 'Inter', sans-serif;
+    --card-shadow: 0 30px 80px -40px rgba(10,6,40,0.55), 0 0 0 1px rgba(255,255,255,0.05);
+    --font-numeral: 'Space Mono', ui-monospace, monospace;
     --glow-strength: 0.12;
+    --tex-hl: rgba(255,255,255,0.18);
   }
 
   /* Card elevation — raised surfaces get depth (Graphite: depth over glow). */
-  .s3-goal-card, .cmp, .team-card, .dist-stage {
+  .s3-goal-card, .cmp, .team-card, .dist-stage, .s4-frame, .dist-proof {
     box-shadow: var(--card-shadow);
+    position: relative;
+  }
+  /* /beta hub card signature: 1px glass highlight on the top edge, inset 14px. */
+  .s3-goal-card::before, .cmp::before, .team-card::before,
+  .dist-stage::before, .s4-frame::before, .dist-proof::before {
+    content: "";
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    top: 0;
+    height: 1px;
+    border-radius: 1px;
+    background: linear-gradient(90deg, transparent, var(--tex-hl), transparent);
+    pointer-events: none;
+    z-index: 2;
   }
 
-  /* Showcase numerals in Dela Gotic (matches /v1 markets display). Units/labels stay sans. */
-  .s2-col-stat, .s10-amount em, .dist-proof-stat b,
-  .s3-goal-num {
+  /* /beta hub rule: mono is reserved for MEASURED values only — never display words
+     ("Millions") or ordinal watermarks, which stay in the display face. */
+  .dist-proof-stat b {
     font-family: var(--font-numeral);
     letter-spacing: -0.01em;
+    font-variant-numeric: tabular-nums;
   }
   .s2-col-stat-u { font-family: var(--font-body); }
 
@@ -67,11 +91,26 @@
     -moz-osx-font-smoothing: grayscale;
   }
   deck-stage section {
-    background: var(--bg);
+    background: var(--field), var(--bg);
     color: var(--text);
     font-family: var(--font-body);
     letter-spacing: -0.01em;
+    position: relative;
   }
+  /* Dot-grain brand signature (from /beta hub `.bh-grain`). */
+  deck-stage section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--grain);
+    background-size: 18px 18px;
+    opacity: 0.45;
+    pointer-events: none;
+    z-index: 0;
+    -webkit-mask-image: radial-gradient(120% 110% at 0% 100%, #000 0%, transparent 58%);
+    mask-image: radial-gradient(120% 110% at 0% 100%, #000 0%, transparent 58%);
+  }
+  .frame, .s1 { z-index: 1; }
 
   /* Slide transitions handled by deck-stage's own opacity fade. */
   .mono { font-family: var(--font-mono); letter-spacing: 0.02em; }
@@ -111,7 +150,7 @@
   .title {
     font-family: var(--font-display);
     font-weight: 700;
-    letter-spacing: -0.035em;
+    letter-spacing: -0.026em;
     margin: 0;
   }
   /* Display headings + hero numerals route through --font-display.
@@ -174,7 +213,7 @@
     font-size: 152px;
     line-height: 1.0;
     font-weight: 700;
-    letter-spacing: -0.045em;
+    letter-spacing: -0.028em;
     margin: 0;
     max-width: 1700px;
     position: relative;
@@ -259,7 +298,7 @@
     font-family: var(--font-mono);
     font-size: 120px;
     font-weight: 700;
-    letter-spacing: -0.05em;
+    letter-spacing: -0.02em;
     line-height: 1;
     color: rgba(255,255,255,0.05);
     pointer-events: none;
@@ -504,7 +543,7 @@
     font-family: var(--font-display);
     font-size: 58px;
     font-weight: 700;
-    letter-spacing: -0.035em;
+    letter-spacing: -0.026em;
     line-height: 1.02;
     color: var(--text);
   }
@@ -588,7 +627,7 @@
   .s2-col-stat {
     font-size: 104px;
     font-weight: 700;
-    letter-spacing: -0.055em;
+    letter-spacing: -0.02em;
     line-height: 0.92;
     color: var(--text);
     margin-bottom: 36px;
@@ -804,7 +843,7 @@
   .cfw2-what {
     font-size: 96px;
     font-weight: 800;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.028em;
     line-height: 0.95;
     color: var(--text-secondary);
   }
@@ -1059,7 +1098,7 @@
   .gtm-name {
     font-size: 44px;
     font-weight: 700;
-    letter-spacing: -0.035em;
+    letter-spacing: -0.026em;
     line-height: 1.0;
     margin-bottom: 16px;
     color: var(--text);
@@ -1179,7 +1218,8 @@
     position: absolute;
     bottom: 20px;
     right: 28px;
-    font-family: var(--font-numeral);
+    font-family: var(--font-display);
+    font-weight: 700;
     font-size: 72px;
     line-height: 1;
     color: var(--text-faint);
@@ -2092,4 +2132,6 @@ without MMs or subsidies.</div>
 
 
 
-<!-- deploy 1785529505 -->
+
+
+<!-- deploy 1785530285 -->
