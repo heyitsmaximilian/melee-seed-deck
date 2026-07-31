@@ -1,6 +1,6 @@
 #!/bin/bash
-# Deploy the Melee seed deck to GitHub Pages
-# Usage: bash ~/melee-seed-deck/deploy.sh [optional commit message]
+# Deploy the Melee deck to GitHub Pages
+# Usage: bash ~/melee-deck/deploy.sh [optional commit message]
 set -e
 export PATH="/opt/homebrew/bin:$PATH"
 
@@ -23,5 +23,5 @@ git push origin main
 
 echo ""
 echo "✅ Deployed"
-echo "🔗 https://heyitsmaximilian.github.io/melee-seed-deck/"
+echo "🔗 https://heyitsmaximilian.github.io/melee-deck/"
 echo "   (may take ~30s for GitHub Pages to rebuild)"
