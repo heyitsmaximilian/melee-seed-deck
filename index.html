@@ -22,7 +22,7 @@
     --amber: #fbbf24;
     --red: #f87171;
     --text: #ffffff;
-    --text-secondary: rgba(255,255,255,0.55);
+    --text-secondary: rgba(255,255,255,0.64);
     --text-muted: rgba(255,255,255,0.32);
     --text-faint: rgba(255,255,255,0.18);
     --text-tertiary: rgba(255,255,255,0.4);
@@ -177,14 +177,19 @@
     overflow: hidden;
     background: var(--bg);
   }
+  /* Organic bloom — /beta hub `.bh-blob`: blurred, asymmetric, never a hard disc. */
   .s1-glow {
     position: absolute;
-    width: 1200px; height: 1200px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(var(--primary-rgb),var(--glow-strength)) 0%, rgba(var(--primary-rgb),0) 60%);
-    top: -300px; left: 50%;
-    transform: translateX(-50%);
-    filter: blur(80px);
+    width: 900px; height: 900px;
+    top: -240px; right: -140px;
+    background:
+      radial-gradient(circle at 38% 34%, rgba(201,184,255,0.20) 0%, rgba(162,140,252,0.13) 26%,
+                      rgba(116,80,236,0.07) 52%, rgba(116,80,236,0.02) 72%, transparent 88%),
+      radial-gradient(circle at 68% 72%, rgba(116,80,236,0.10) 0%, rgba(116,80,236,0.03) 46%, transparent 74%);
+    border-radius: 58% 42% 47% 53% / 45% 51% 49% 55%;
+    filter: blur(34px);
+    opacity: 0.85;
+    pointer-events: none;
   }
   .s1-wordmark {
     position: absolute;
@@ -389,7 +394,7 @@
     margin-top: 36px;
     padding: 36px 44px;
     border: 1px solid rgba(var(--primary-rgb),0.35);
-    border-radius: 14px;
+    border-radius: 18px;
     background: rgba(var(--primary-rgb),0.06);
     font-size: 32px;
     font-weight: 500;
@@ -936,7 +941,7 @@
     gap: 0;
     margin-top: 28px;
     border: 1px solid var(--border);
-    border-radius: 14px;
+    border-radius: 18px;
     overflow: hidden;
     background: var(--bg-card);
   }
@@ -1060,7 +1065,7 @@
     position: absolute;
     left: 0; right: 0; top: 44px; bottom: 0;
     border: 1px solid var(--border);
-    border-radius: 16px;
+    border-radius: 18px;
     background: var(--bg-card);
     box-shadow: var(--card-shadow);
     z-index: -1;
@@ -1202,7 +1207,7 @@
   .dist-stage {
     padding: 44px 40px 40px;
     border: 1px solid var(--border);
-    border-radius: 14px;
+    border-radius: 18px;
     background: color-mix(in srgb, var(--bg-card) 70%, transparent);
     display: flex;
     flex-direction: column;
@@ -1264,7 +1269,7 @@
     gap: 36px;
     padding: 32px 40px;
     border: 1px solid color-mix(in srgb, var(--primary) 28%, transparent);
-    border-radius: 14px;
+    border-radius: 18px;
     background: color-mix(in srgb, var(--primary) 4%, var(--bg-card));
     color: var(--text-secondary);
     line-height: 1.25;
@@ -2134,4 +2139,6 @@ without MMs or subsidies.</div>
 
 
 
-<!-- deploy 1785530285 -->
+
+
+<!-- deploy 1785535554 -->
