@@ -50,8 +50,74 @@
     --font-numeral: 'Space Mono', ui-monospace, monospace;
     --glow-strength: 0.12;
     --tex-hl: rgba(255,255,255,0.18);
+    --tex-wm: rgba(255,255,255,0.05);
+    --track: rgba(255,255,255,0.09);
+    --glass-inset: rgba(255,255,255,0.03);
+    --glass-wash: rgba(255,255,255,0.015);
+    --curve-head: rgba(255,255,255,0.5);
+    --rule-dash: rgba(255,255,255,0.22);
+    --head-fill: #ffffff;
     --e-out: cubic-bezier(.2,.7,.25,1);
   }
+
+
+  /* ============================================================
+     THEME B — PAPER (light). Values are the /beta hub's own light
+     theme (BetaHub.tsx `[data-theme=light]`): ivory ground, deep
+     indigo ink, editorial purple. Enable with ?theme=light or press T.
+     ============================================================ */
+  :root[data-theme="light"] {
+    --bg: #efeee8;
+    --bg-card: rgba(255,255,255,0.62);
+    --bg-card-hover: rgba(255,255,255,0.78);
+    --primary: #7450ec;
+    --primary-rgb: 116,80,236;
+
+    --text: #1c1b18;
+    --text-secondary: rgba(28,27,24,0.66);
+    --text-muted: rgba(28,27,24,0.46);
+    --text-tertiary: rgba(28,27,24,0.40);
+    --text-faint: rgba(42,26,102,0.13);
+
+    --border: rgba(42,26,102,0.12);
+    --border-hover: rgba(42,26,102,0.26);
+
+    --green: #059669;
+    --red: #b4463c;
+
+    --card-shadow: 0 26px 60px -38px rgba(42,26,102,0.42), 0 0 0 1px rgba(42,26,102,0.07);
+    --elev-1: 0 1px 2px rgba(28,27,24,0.06), 0 0 0 1px rgba(42,26,102,0.09);
+    --elev-2: 0 1px 2px rgba(28,27,24,0.07), 0 24px 48px -28px rgba(28,27,24,0.22), 0 0 0 1px rgba(42,26,102,0.09);
+
+    --tex-hl: rgba(255,255,255,0.9);
+    --tex-wm: rgba(42,26,102,0.05);
+    --track: rgba(42,26,102,0.12);
+    --glass-inset: rgba(255,255,255,0.66);
+    --glass-wash: rgba(255,255,255,0.45);
+    --curve-head: rgba(42,26,102,0.42);
+    --rule-dash: rgba(42,26,102,0.24);
+    --head-fill: #2a1a66;
+
+    /* Hub light field + grain: one soft violet bloom on ivory. */
+    --field: radial-gradient(70% 55% at 82% -8%, rgba(116,80,236,0.09), transparent 60%);
+    --grain: radial-gradient(rgba(116,80,236,0.5) 0.9px, transparent 1px);
+  }
+  /* Headings take the hub's deep-indigo ink rather than plain body ink. */
+  :root[data-theme="light"] .title,
+  :root[data-theme="light"] .headline,
+  :root[data-theme="light"] .ce-q,
+  :root[data-theme="light"] .mkt-tail-h,
+  :root[data-theme="light"] .unl-h,
+  :root[data-theme="light"] .gtm-name,
+  :root[data-theme="light"] .cfw2-what,
+  :root[data-theme="light"] .team-name,
+  :root[data-theme="light"] .dist-stage-name,
+  :root[data-theme="light"] .s3-goal-title { color: #2a1a66; }
+  /* The logo lockup is white-on-dark artwork; invert it on ivory. */
+  /* Proper light artwork rather than a filter hack: editorial-purple mark, ink text. */
+  :root[data-theme="light"] .s1-wordmark img,
+  :root[data-theme="light"] .ce-mark { content: url("assets/melee-lockup-light.svg"); }
+  :root[data-theme="light"] .s1-glow { opacity: 0.5; }
 
   /* Card elevation — raised surfaces get depth (Graphite: depth over glow). */
   .s3-goal-card, .cmp, .team-card, .dist-stage, .s4-frame, .dist-proof {
@@ -306,7 +372,7 @@
     font-weight: 700;
     letter-spacing: -0.02em;
     line-height: 1;
-    color: rgba(255,255,255,0.05);
+    color: var(--tex-wm);
     pointer-events: none;
   }
   .s3-goal-icon {
@@ -487,7 +553,7 @@
   .ce-bar {
     height: 14px;
     border-radius: 999px;
-    background: rgba(255,255,255,0.09);
+    background: var(--track);
     overflow: hidden;
     margin-top: 15px;
   }
@@ -512,7 +578,7 @@
     margin-top: 38px;
     border-radius: 18px;
     border: 1px solid var(--border);
-    background: rgba(255,255,255,0.03);
+    background: var(--glass-inset);
     padding: 30px 34px 34px;
   }
   .ce-label {
@@ -1231,14 +1297,14 @@
     padding: 22px 24px;
     border: 1px solid var(--border);
     border-radius: 12px;
-    background: rgba(255,255,255,0.015);
+    background: var(--glass-wash);
     display: flex;
     flex-direction: column;
     gap: 10px;
   }
   .gtm-phase:not(.is-now) .gtm-kgt {
     border-color: var(--border);
-    background: rgba(255,255,255,0.015);
+    background: var(--glass-wash);
     opacity: 0.78;
   }
   .gtm-phase.is-now .gtm-kgt {
@@ -1907,8 +1973,8 @@ without MMs or subsidies.</div>
         <svg viewBox="0 0 1600 520" preserveAspectRatio="none" aria-hidden="true">
           <defs>
             <linearGradient id="mktHeadFill" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#ffffff" stop-opacity="0.12"/>
-              <stop offset="1" stop-color="#ffffff" stop-opacity="0.02"/>
+              <stop offset="0" style="stop-color:var(--head-fill)" stop-opacity="0.12"/>
+              <stop offset="1" style="stop-color:var(--head-fill)" stop-opacity="0.02"/>
             </linearGradient>
             <linearGradient id="mktTailFill" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0" style="stop-color: var(--primary)" stop-opacity="0.30"/>
@@ -1919,9 +1985,9 @@ without MMs or subsidies.</div>
           </defs>
           <path d="M 0 64 C 90 84, 180 176, 280 288 C 380 400, 560 428, 760 448 C 1000 468, 1300 478, 1600 486 L 1600 520 L 0 520 Z" fill="url(#mktHeadFill)" clip-path="url(#mktClipHead)"/>
           <path d="M 0 64 C 90 84, 180 176, 280 288 C 380 400, 560 428, 760 448 C 1000 468, 1300 478, 1600 486 L 1600 520 L 0 520 Z" fill="url(#mktTailFill)" clip-path="url(#mktClipTail)"/>
-          <path d="M 0 64 C 90 84, 180 176, 280 288 C 380 400, 560 428, 760 448 C 1000 468, 1300 478, 1600 486" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="3" clip-path="url(#mktClipHead)"/>
+          <path d="M 0 64 C 90 84, 180 176, 280 288 C 380 400, 560 428, 760 448 C 1000 468, 1300 478, 1600 486" fill="none" style="stroke:var(--curve-head)" stroke-width="3" clip-path="url(#mktClipHead)"/>
           <path d="M 0 64 C 90 84, 180 176, 280 288 C 380 400, 560 428, 760 448 C 1000 468, 1300 478, 1600 486" fill="none" style="stroke: var(--primary)" stroke-width="3" clip-path="url(#mktClipTail)"/>
-          <line x1="280" y1="30" x2="280" y2="520" stroke="rgba(255,255,255,0.22)" stroke-width="1.5" stroke-dasharray="3 8"/>
+          <line x1="280" y1="30" x2="280" y2="520" style="stroke:var(--rule-dash)" stroke-width="1.5" stroke-dasharray="3 8"/>
           <circle cx="280" cy="288" r="14" style="fill: var(--primary)" opacity="0.25"/>
           <circle cx="280" cy="288" r="7" style="fill: var(--primary)"/>
         </svg>
@@ -2184,6 +2250,21 @@ without MMs or subsidies.</div>
   })();
 </script>
 
+
+<script>
+  /* Theme: ?theme=light (or press T). Dark stays the default. */
+  (function () {
+    var q = new URLSearchParams(location.search).get('theme');
+    if (q === 'light') document.documentElement.dataset.theme = 'light';
+    window.addEventListener('keydown', function (e) {
+      if (e.key === 't' || e.key === 'T') {
+        var r = document.documentElement;
+        r.dataset.theme = r.dataset.theme === 'light' ? '' : 'light';
+      }
+    });
+  })();
+</script>
+
 <div id="tweak-mount"></div>
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
@@ -2298,4 +2379,6 @@ without MMs or subsidies.</div>
 
 
 
-<!-- deploy 1785704456 -->
+
+
+<!-- deploy 1785706033 -->
