@@ -67,19 +67,19 @@
      indigo ink, editorial purple. Enable with ?theme=light or press T.
      ============================================================ */
   :root[data-theme="light"] {
-    --bg: #efeee8;
-    --bg-card: rgba(255,255,255,0.62);
+    --bg: #c8b8f9;
+    --bg-card: rgba(255,255,255,0.64);
     --bg-card-hover: rgba(255,255,255,0.78);
     --primary: #7450ec;
     --primary-rgb: 116,80,236;
 
     --text: #1c1b18;
-    --text-secondary: rgba(28,27,24,0.66);
-    --text-muted: rgba(28,27,24,0.46);
+    --text-secondary: rgba(28,27,24,0.70);
+    --text-muted: rgba(42,26,102,0.56);
     --text-tertiary: rgba(28,27,24,0.40);
     --text-faint: rgba(42,26,102,0.13);
 
-    --border: rgba(42,26,102,0.12);
+    --border: rgba(42,26,102,0.14);
     --border-hover: rgba(42,26,102,0.26);
 
     --green: #059669;
@@ -98,8 +98,13 @@
     --rule-dash: rgba(42,26,102,0.24);
     --head-fill: #2a1a66;
 
-    /* Hub light field + grain: one soft violet bloom on ivory. */
-    --field: radial-gradient(70% 55% at 82% -8%, rgba(116,80,236,0.09), transparent 60%);
+    /* Hub light "Mist" field — BetaHub.tsx `--field3`, the deepest of the three
+       crossfading light scenes (what the hub arcs into at the bottom of scroll):
+       white blooms over a lavender ground. */
+    --field:
+      radial-gradient(50% 45% at 25% 30%, rgba(255,255,255,0.78), transparent 62%),
+      radial-gradient(55% 50% at 72% 68%, rgba(255,255,255,0.50), transparent 60%),
+      radial-gradient(60% 55% at 88% 12%, rgba(162,140,252,0.55), transparent 66%);
     --grain: radial-gradient(rgba(116,80,236,0.5) 0.9px, transparent 1px);
   }
   /* Headings take the hub's deep-indigo ink rather than plain body ink. */
@@ -242,7 +247,7 @@
     padding: 100px;
     position: relative;
     overflow: hidden;
-    background: var(--bg);
+    background: transparent;
   }
   /* Organic bloom — /beta hub `.bh-blob`: blurred, asymmetric, never a hard disc. */
   .s1-glow {
@@ -2381,4 +2386,6 @@ without MMs or subsidies.</div>
 
 
 
-<!-- deploy 1785706033 -->
+
+
+<!-- deploy 1785706611 -->
