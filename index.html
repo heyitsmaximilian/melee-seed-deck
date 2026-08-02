@@ -50,6 +50,7 @@
     --font-numeral: 'Space Mono', ui-monospace, monospace;
     --glow-strength: 0.12;
     --tex-hl: rgba(255,255,255,0.18);
+    --e-out: cubic-bezier(.2,.7,.25,1);
   }
 
   /* Card elevation — raised surfaces get depth (Graphite: depth over glow). */
@@ -567,6 +568,31 @@
     opacity: 0.5;
   }
   .mk-r svg { display: block; width: 100%; height: 100%; }
+
+  /* Motion — /beta hub choreography (rise + line draw). Replays on every slide
+     entry because deck-stage sets [data-deck-active] on the current section. */
+  .mk-anim, .mk-fade { opacity: 0; }
+  .mk-line { stroke-dasharray: 1; stroke-dashoffset: 1; }
+
+  section[data-deck-active] .mk-anim {
+    animation: mkRise 1.1s var(--e-out) var(--d, 0s) both;
+  }
+  section[data-deck-active] .mk-fade {
+    animation: mkFade 0.9s var(--e-out) var(--d, 0s) both;
+  }
+  section[data-deck-active] .mk-line {
+    animation: mkDraw 1.7s var(--e-out) var(--d, 0.35s) both;
+  }
+  @keyframes mkRise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+  @keyframes mkFade { to { opacity: 1; } }
+  @keyframes mkDraw { to { stroke-dashoffset: 0; } }
+
+  /* A paused animation must never hide content in print or reduced-motion. */
+  @media print, (prefers-reduced-motion: reduce) {
+    .mk-anim, .mk-fade { opacity: 1 !important; animation: none !important; transform: none !important; }
+    .mk-line { stroke-dashoffset: 0 !important; animation: none !important; }
+  }
+
   .s4-chips {
     display: flex;
     align-items: center;
@@ -1730,56 +1756,56 @@ without MMs or subsidies.</div>
       <div class="s4-wrap">
         <div class="s4-frame mk">
           <div class="mk-l">
-            <div class="mk-kick">
+            <div class="mk-kick mk-anim" style="--d:.10s">
               <span class="mk-ico">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 12h4M8 10v4"/><circle cx="15" cy="11" r="1"/><circle cx="17.5" cy="13.5" r="1"/><path d="M17.3 6H6.7A4.7 4.7 0 0 0 2 10.7v2.6A4.7 4.7 0 0 0 6.7 18c1.5 0 2.3-.7 3-1.4h4.6c.7.7 1.5 1.4 3 1.4A4.7 4.7 0 0 0 22 13.3v-2.6A4.7 4.7 0 0 0 17.3 6z"/></svg>
               </span>
               Culture · GTA VI release window
             </div>
-            <h3 class="mk-q">Does GTA VI slip past its 2026 date again?</h3>
+            <h3 class="mk-q mk-anim" style="--d:.20s">Does GTA VI slip past its 2026 date again?</h3>
 
-            <div class="mk-thead"><span>Outcome</span><span>%</span><span></span></div>
-            <div class="mk-row lead">
+            <div class="mk-thead mk-fade" style="--d:.32s"><span>Outcome</span><span>%</span><span></span></div>
+            <div class="mk-row lead mk-anim" style="--d:.42s">
               <span class="mk-name"><span class="mk-dot" style="background:var(--primary)"></span>Yes</span>
               <span class="mk-pct">64.0%</span>
               <span class="mk-buy">Buy 1.56×</span>
             </div>
-            <div class="mk-row">
+            <div class="mk-row mk-anim" style="--d:.54s">
               <span class="mk-name"><span class="mk-dot" style="background:#94a3b8"></span>No</span>
               <span class="mk-pct">36.0%</span>
               <span class="mk-buy">Buy 2.78×</span>
             </div>
 
-            <div class="mk-news"><b>News</b> Rockstar skipped the summer showcase. The market moved nine points in a day.</div>
-            <div class="mk-foot">by <b>@leakwatch</b> · <b>$1.2M</b> vol · 8,410 traders</div>
+            <div class="mk-news mk-anim" style="--d:.68s"><b>News</b> Rockstar skipped the summer showcase. The market moved nine points in a day.</div>
+            <div class="mk-foot mk-anim" style="--d:.80s">by <b>@leakwatch</b> · <b>$1.2M</b> vol · 8,410 traders</div>
           </div>
 
           <div class="mk-r">
-            <img class="mk-mark" src="assets/melee-lockup.svg" alt="">
+            <img class="mk-mark mk-fade" style="--d:.22s" src="assets/melee-lockup.svg" alt="">
             <svg viewBox="0 0 1000 560" preserveAspectRatio="none" aria-hidden="true">
-              <g stroke="rgba(255,255,255,0.07)" stroke-width="1" stroke-dasharray="4 8">
+              <g class="mk-fade" style="--d:.26s" stroke="rgba(255,255,255,0.07)" stroke-width="1" stroke-dasharray="4 8">
                 <line x1="90" y1="99"  x2="800" y2="99"/>
                 <line x1="90" y1="255" x2="800" y2="255"/>
                 <line x1="90" y1="411" x2="800" y2="411"/>
               </g>
-              <g fill="rgba(255,255,255,0.28)" font-family="'JetBrains Mono',monospace" font-size="15" text-anchor="end">
+              <g class="mk-fade" style="--d:.30s" fill="rgba(255,255,255,0.28)" font-family="'JetBrains Mono',monospace" font-size="15" text-anchor="end">
                 <text x="72" y="104">70%</text>
                 <text x="72" y="260">50%</text>
                 <text x="72" y="416">30%</text>
               </g>
-              <polyline fill="none" stroke="#94a3b8" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"
+              <polyline class="mk-line" style="--d:.40s" pathLength="1" fill="none" stroke="#94a3b8" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"
                 points="90,255 149,239 208,216 267,232 326,200 385,224 444,208 503,255 562,286 621,310 680,325 739,349 800,364"/>
-              <polyline fill="none" stroke="#a28cfc" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"
+              <polyline class="mk-line" style="--d:.52s" pathLength="1" fill="none" stroke="#a28cfc" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"
                 points="90,255 149,271 208,294 267,278 326,310 385,286 444,302 503,255 562,224 621,200 680,185 739,161 800,146"/>
-              <circle cx="800" cy="146" r="7" fill="#a28cfc"/>
-              <circle cx="800" cy="364" r="6" fill="#94a3b8"/>
-              <g font-family="'Plus Jakarta Sans',sans-serif">
+              <circle class="mk-fade" style="--d:2.0s" cx="800" cy="146" r="7" fill="#a28cfc"/>
+              <circle class="mk-fade" style="--d:1.95s" cx="800" cy="364" r="6" fill="#94a3b8"/>
+              <g class="mk-fade" style="--d:2.05s" font-family="'Plus Jakarta Sans',sans-serif">
                 <text x="828" y="138" fill="#a28cfc" font-size="18" font-weight="600">Yes</text>
                 <text x="828" y="168" fill="#a28cfc" font-size="27" font-weight="700">64.0%</text>
                 <text x="828" y="356" fill="#94a3b8" font-size="18" font-weight="600">No</text>
                 <text x="828" y="386" fill="#94a3b8" font-size="27" font-weight="700">36.0%</text>
               </g>
-              <g fill="rgba(255,255,255,0.32)" font-family="'JetBrains Mono',monospace" font-size="15" text-anchor="middle">
+              <g class="mk-fade" style="--d:.34s" fill="rgba(255,255,255,0.32)" font-family="'JetBrains Mono',monospace" font-size="15" text-anchor="middle">
                 <text x="149" y="505">Apr</text>
                 <text x="326" y="505">May</text>
                 <text x="503" y="505">Jun</text>
@@ -2322,4 +2348,6 @@ without MMs or subsidies.</div>
 
 
 
-<!-- deploy 1785701047 -->
+
+
+<!-- deploy 1785702868 -->
