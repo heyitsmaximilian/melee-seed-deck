@@ -77,7 +77,7 @@
     --text-secondary: rgba(28,27,24,0.70);
     --text-muted: rgba(42,26,102,0.56);
     --text-tertiary: rgba(28,27,24,0.40);
-    --text-faint: rgba(42,26,102,0.13);
+    --text-faint: rgba(42,26,102,0.17);
 
     --border: rgba(42,26,102,0.14);
     --border-hover: rgba(42,26,102,0.26);
@@ -90,7 +90,7 @@
     --elev-2: 0 1px 2px rgba(28,27,24,0.07), 0 24px 48px -28px rgba(28,27,24,0.22), 0 0 0 1px rgba(42,26,102,0.09);
 
     --tex-hl: rgba(255,255,255,0.9);
-    --tex-wm: rgba(42,26,102,0.05);
+    --tex-wm: rgba(42,26,102,0.09);
     --track: rgba(42,26,102,0.12);
     --glass-inset: rgba(255,255,255,0.66);
     --glass-wash: rgba(255,255,255,0.45);
@@ -107,6 +107,41 @@
       radial-gradient(60% 55% at 88% 12%, rgba(162,140,252,0.55), transparent 66%);
     --grain: radial-gradient(rgba(116,80,236,0.5) 0.9px, transparent 1px);
   }
+  /* Accent emphasis was tuned for a near-black ground: 4-6% purple over a white
+     card is invisible on lavender. Strengthen the "primary/active" states so the
+     emphasis hierarchy survives the theme flip. */
+  :root[data-theme="light"] .gtm-phase.is-now::after {
+    border-color: rgba(var(--primary-rgb), 0.42);
+    background: color-mix(in srgb, var(--primary) 11%, #ffffff);
+  }
+  :root[data-theme="light"] .dist-stage.primary {
+    border-color: color-mix(in srgb, var(--primary) 45%, var(--border));
+    background: color-mix(in srgb, var(--primary) 12%, #ffffff);
+  }
+  :root[data-theme="light"] .comp .comp-cell.is-melee {
+    background: color-mix(in srgb, var(--primary) 10%, transparent);
+  }
+  :root[data-theme="light"] .comp .comp-hdr.is-melee {
+    background: color-mix(in srgb, var(--primary) 16%, var(--bg));
+  }
+  :root[data-theme="light"] .comp .comp-hdr.is-melee .comp-hdr-role {
+    color: color-mix(in srgb, var(--primary) 70%, #2a1a66);
+  }
+  :root[data-theme="light"] .cmp-callout,
+  :root[data-theme="light"] .comp-callout-wrap {
+    background: color-mix(in srgb, var(--primary) 9%, #ffffff);
+  }
+  :root[data-theme="light"] .cmp .val.pmm-row,
+  :root[data-theme="light"] .cmp .rowlbl.pmm-row {
+    background: color-mix(in srgb, var(--primary) 12%, transparent);
+  }
+  :root[data-theme="light"] .gtm-kgt {
+    background: color-mix(in srgb, #ffffff 70%, transparent);
+  }
+  :root[data-theme="light"] .ce-earn {
+    background: color-mix(in srgb, var(--primary) 7%, #ffffff);
+  }
+
   /* Headings take the hub's deep-indigo ink rather than plain body ink. */
   :root[data-theme="light"] .title,
   :root[data-theme="light"] .headline,
@@ -152,6 +187,10 @@
     font-variant-numeric: tabular-nums;
   }
   .s2-col-stat-u { font-family: var(--font-body); }
+
+  /* deck-stage hardcodes :host{background:#000} for its letterbox. Outer-document
+     rules beat :host, so theme it — otherwise light themes get a black band. */
+  deck-stage { background: var(--bg); }
 
   html, body {
     margin: 0;
@@ -2388,4 +2427,6 @@ without MMs or subsidies.</div>
 
 
 
-<!-- deploy 1785706611 -->
+
+
+<!-- deploy 1785707259 -->
