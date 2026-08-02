@@ -440,11 +440,133 @@
     background: var(--bg-card);
     box-shadow: var(--card-shadow);
   }
-  .s4-frame img {
-    display: block;
-    width: 100%;
-    height: auto;
+  /* Market module — rebuilt natively in the /beta spotlight language. */
+  .mk {
+    display: grid;
+    grid-template-columns: 1fr 1.25fr;
+    gap: 0;
   }
+  .mk-l {
+    padding: 40px 40px 34px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--border);
+  }
+  .mk-kick {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-mono);
+    font-size: 15px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+  .mk-ico {
+    width: 34px; height: 34px;
+    border-radius: 10px;
+    background: rgba(var(--primary-rgb),0.14);
+    border: 1px solid rgba(var(--primary-rgb),0.3);
+    display: grid;
+    place-items: center;
+    color: var(--primary);
+    flex: none;
+  }
+  .mk-q {
+    font-family: var(--font-display);
+    font-size: 42px;
+    font-weight: 700;
+    letter-spacing: -0.026em;
+    line-height: 1.1;
+    margin: 22px 0 30px;
+    color: var(--text);
+    text-wrap: balance;
+  }
+  .mk-thead {
+    display: grid;
+    grid-template-columns: 1fr auto 132px;
+    align-items: center;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+    font-size: 18px;
+    color: var(--text-muted);
+  }
+  .mk-row {
+    display: grid;
+    grid-template-columns: 1fr auto 132px;
+    align-items: center;
+    gap: 18px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .mk-name {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+  }
+  .mk-dot {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    flex: none;
+  }
+  .mk-pct {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+  }
+  .mk-buy {
+    justify-self: end;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 18px;
+    border-radius: 999px;
+    border: 1px solid var(--border-hover);
+    background: rgba(255,255,255,0.04);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-variant-numeric: tabular-nums;
+  }
+  .mk-row.lead .mk-buy {
+    border-color: rgba(var(--primary-rgb),0.45);
+    background: rgba(var(--primary-rgb),0.12);
+    color: var(--text);
+  }
+  .mk-news {
+    margin-top: 26px;
+    font-size: 19px;
+    line-height: 1.5;
+    color: var(--text-secondary);
+  }
+  .mk-news b { color: var(--text); font-weight: 600; }
+  .mk-foot {
+    margin-top: auto;
+    padding-top: 26px;
+    font-size: 17px;
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .mk-foot b { color: var(--text-secondary); font-weight: 600; }
+  .mk-r {
+    position: relative;
+    padding: 34px 30px 26px;
+    min-height: 470px;
+  }
+  .mk-mark {
+    position: absolute;
+    top: 30px; left: 34px;
+    height: 22px;
+    width: auto;
+    display: block;
+    opacity: 0.5;
+  }
+  .mk-r svg { display: block; width: 100%; height: 100%; }
   .s4-chips {
     display: flex;
     align-items: center;
@@ -1606,16 +1728,73 @@ without MMs or subsidies.</div>
       <p class="sub">Launch a market on anything without gatekeepers or middlemen.</p>
 
       <div class="s4-wrap">
-        <div class="s4-frame">
-          <img src="assets/product-crypto.png" alt="Melee BTC crypto price market — live chart and parimutuel trade panel, live on Solana">
+        <div class="s4-frame mk">
+          <div class="mk-l">
+            <div class="mk-kick">
+              <span class="mk-ico">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 12h4M8 10v4"/><circle cx="15" cy="11" r="1"/><circle cx="17.5" cy="13.5" r="1"/><path d="M17.3 6H6.7A4.7 4.7 0 0 0 2 10.7v2.6A4.7 4.7 0 0 0 6.7 18c1.5 0 2.3-.7 3-1.4h4.6c.7.7 1.5 1.4 3 1.4A4.7 4.7 0 0 0 22 13.3v-2.6A4.7 4.7 0 0 0 17.3 6z"/></svg>
+              </span>
+              Culture · GTA VI release window
+            </div>
+            <h3 class="mk-q">Does GTA VI slip past its 2026 date again?</h3>
+
+            <div class="mk-thead"><span>Outcome</span><span>%</span><span></span></div>
+            <div class="mk-row lead">
+              <span class="mk-name"><span class="mk-dot" style="background:var(--primary)"></span>Yes</span>
+              <span class="mk-pct">64.0%</span>
+              <span class="mk-buy">Buy 1.56×</span>
+            </div>
+            <div class="mk-row">
+              <span class="mk-name"><span class="mk-dot" style="background:#94a3b8"></span>No</span>
+              <span class="mk-pct">36.0%</span>
+              <span class="mk-buy">Buy 2.78×</span>
+            </div>
+
+            <div class="mk-news"><b>News</b> Rockstar skipped the summer showcase. The market moved nine points in a day.</div>
+            <div class="mk-foot">by <b>@leakwatch</b> · <b>$1.2M</b> vol · 8,410 traders</div>
+          </div>
+
+          <div class="mk-r">
+            <img class="mk-mark" src="assets/melee-lockup.svg" alt="">
+            <svg viewBox="0 0 1000 560" preserveAspectRatio="none" aria-hidden="true">
+              <g stroke="rgba(255,255,255,0.07)" stroke-width="1" stroke-dasharray="4 8">
+                <line x1="90" y1="99"  x2="800" y2="99"/>
+                <line x1="90" y1="255" x2="800" y2="255"/>
+                <line x1="90" y1="411" x2="800" y2="411"/>
+              </g>
+              <g fill="rgba(255,255,255,0.28)" font-family="'JetBrains Mono',monospace" font-size="15" text-anchor="end">
+                <text x="72" y="104">70%</text>
+                <text x="72" y="260">50%</text>
+                <text x="72" y="416">30%</text>
+              </g>
+              <polyline fill="none" stroke="#94a3b8" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"
+                points="90,255 149,239 208,216 267,232 326,200 385,224 444,208 503,255 562,286 621,310 680,325 739,349 800,364"/>
+              <polyline fill="none" stroke="#a28cfc" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"
+                points="90,255 149,271 208,294 267,278 326,310 385,286 444,302 503,255 562,224 621,200 680,185 739,161 800,146"/>
+              <circle cx="800" cy="146" r="7" fill="#a28cfc"/>
+              <circle cx="800" cy="364" r="6" fill="#94a3b8"/>
+              <g font-family="'Plus Jakarta Sans',sans-serif">
+                <text x="828" y="138" fill="#a28cfc" font-size="18" font-weight="600">Yes</text>
+                <text x="828" y="168" fill="#a28cfc" font-size="27" font-weight="700">64.0%</text>
+                <text x="828" y="356" fill="#94a3b8" font-size="18" font-weight="600">No</text>
+                <text x="828" y="386" fill="#94a3b8" font-size="27" font-weight="700">36.0%</text>
+              </g>
+              <g fill="rgba(255,255,255,0.32)" font-family="'JetBrains Mono',monospace" font-size="15" text-anchor="middle">
+                <text x="149" y="505">Apr</text>
+                <text x="326" y="505">May</text>
+                <text x="503" y="505">Jun</text>
+                <text x="680" y="505">Jul</text>
+              </g>
+            </svg>
+          </div>
         </div>
         <div class="s4-chips">
           <span class="s4-chips-lbl">One primitive · every category</span>
-          <span class="s4-chip live">Crypto</span>
+          <span class="s4-chip">Crypto</span>
           <span class="s4-chip">Sports</span>
           <span class="s4-chip">Politics</span>
           <span class="s4-chip">Economics</span>
-          <span class="s4-chip">Culture</span>
+          <span class="s4-chip live">Culture</span>
           <span class="s4-chip">Breaking news</span>
         </div>
       </div>
@@ -2141,4 +2320,6 @@ without MMs or subsidies.</div>
 
 
 
-<!-- deploy 1785535554 -->
+
+
+<!-- deploy 1785701047 -->
